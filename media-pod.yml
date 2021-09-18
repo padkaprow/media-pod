@@ -161,6 +161,47 @@ spec:
     - mountPath: /downloads
       name: sabnzbd-downloads
     workingDir: /
+  - command:
+    - /bin/sh
+    - /entrypoint.sh
+    env:
+    - name: PATH
+      value: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+    - name: TERM
+      value: xterm
+    - name: container
+      value: podman
+    - name: PORT
+      value: "9090"
+    - name: USER
+      value: darkhttpd
+    - name: GROUP
+      value: darkhttpd
+    - name: GID
+      value: "911"
+    - name: UID
+      value: "911"
+    image: docker.io/b4bz/homer:latest
+    name: homer-menu
+    ports:
+    - containerPort: 9090
+      hostPort: 9090
+      protocol: TCP
+    resources: {}
+    securityContext:
+      allowPrivilegeEscalation: true
+      capabilities:
+        drop:
+        - CAP_MKNOD
+        - CAP_NET_RAW
+        - CAP_AUDIT_WRITE
+      privileged: false
+      readOnlyRootFilesystem: false
+      seLinuxOptions: {}
+    volumeMounts:
+    - mountPath: /www/assets
+      name: homer-config
+    workingDir: /
   dnsConfig: {}
   restartPolicy: Never
   volumes:
@@ -196,4 +237,8 @@ spec:
       path: /srv/containers/sabnzbd/jobs
       type: Directory
     name: jobs
+  - hostPath:
+      path: /srv/containers/homer
+      type: Directory
+    name: homer-config
 status: {}
