@@ -172,7 +172,7 @@ spec:
     - name: container
       value: podman
     - name: PORT
-      value: "9090"
+      value: "9898"
     - name: USER
       value: darkhttpd
     - name: GROUP
@@ -184,8 +184,8 @@ spec:
     image: docker.io/b4bz/homer:latest
     name: homer-menu
     ports:
-    - containerPort: 9090
-      hostPort: 9090
+    - containerPort: 9898
+      hostPort: 9898
       protocol: TCP
     resources: {}
     securityContext:
