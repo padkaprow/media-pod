@@ -37,7 +37,7 @@ spec:
     - name: HOME
       value: /config
     image: docker.io/linuxserver/sabnzbd:latest
-    name: media-pod-sabnzbd
+    name: sabnzbd
     ports:
     - containerPort: 8080
       hostPort: 8080
@@ -89,7 +89,7 @@ spec:
     - name: TZ
       value: America/New_York
     image: docker.io/linuxserver/sonarr:latest
-    name: media-pod-sonarr
+    name: sonarr
     ports:
     - containerPort: 8989
       hostPort: 8989
@@ -137,7 +137,7 @@ spec:
     - name: PUID
       value: "1001"
     image: docker.io/linuxserver/radarr:latest
-    name: media-pod-radarr
+    name: radarr
     ports:
     - containerPort: 7878
       hostPort: 7878
@@ -182,7 +182,7 @@ spec:
     - name: UID
       value: "1001"
     image: docker.io/b4bz/homer:latest
-    name: homer-menu
+    name: homer
     ports:
     - containerPort: 9898
       hostPort: 9898

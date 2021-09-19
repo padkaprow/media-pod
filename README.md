@@ -1,2 +1,2 @@
 # media-pod
-media-pod with sabnzbd, sonarr and radarr
+media-pod with sabnzbd, sonarr, radarr and homer dashboard.
