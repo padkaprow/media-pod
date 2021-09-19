@@ -178,9 +178,9 @@ spec:
     - name: GROUP
       value: darkhttpd
     - name: GID
-      value: "911"
+      value: "1001"
     - name: UID
-      value: "911"
+      value: "1001"
     image: docker.io/b4bz/homer:latest
     name: homer-menu
     ports:
