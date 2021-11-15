@@ -36,6 +36,12 @@ spec:
         - containerPort: 8080
           hostPort: 8080
           protocol: TCP
+      livenessProbe:
+        exec:
+          command:
+            - "curl"
+            - "--fail"
+            - "http://localhost:8080/"
       resources: {}
       securityContext:
         allowPrivilegeEscalation: true
@@ -47,13 +53,6 @@ spec:
         privileged: false
         readOnlyRootFilesystem: false
         seLinuxOptions: {}
-      healthcheck:
-        test: curl http://localhost:8080 || exit 1
-        interval: 30s
-        timeout: 60s
-        retries: 5
-        start_period: 300s
-      restart: always
       volumeMounts:
         - mountPath: /downloads
           name: sabnzbd-downloads
@@ -95,6 +94,12 @@ spec:
         - containerPort: 8989
           hostPort: 8989
           protocol: TCP
+      livenessProbe:
+        exec:
+          command:
+            - "curl"
+            - "--fail"
+            - "http://localhost:8989/"
       resources: {}
       securityContext:
         allowPrivilegeEscalation: true
@@ -106,13 +111,6 @@ spec:
         privileged: false
         readOnlyRootFilesystem: false
         seLinuxOptions: {}
-      healthcheck:
-        test: curl http://localhost:8989 || exit 1
-        interval: 30s
-        timeout: 60s
-        retries: 5
-        start_period: 300s
-      restart: always
       volumeMounts:
         - mountPath: /config
           name: sonarr-config
@@ -150,6 +148,12 @@ spec:
         - containerPort: 7878
           hostPort: 7878
           protocol: TCP
+      livenessProbe:
+        exec:
+          command:
+            - "curl"
+            - "--fail"
+            - "http://localhost:7878/"
       resources: {}
       securityContext:
         allowPrivilegeEscalation: true
@@ -161,13 +165,6 @@ spec:
         privileged: false
         readOnlyRootFilesystem: false
         seLinuxOptions: {}
-      healthcheck:
-        test: curl http://localhost:7878 || exit 1
-        interval: 30s
-        timeout: 60s
-        retries: 5
-        start_period: 300s
-      restart: always
       volumeMounts:
         - mountPath: /config
           name: radarr-config
@@ -202,6 +199,12 @@ spec:
         - containerPort: 9898
           hostPort: 9898
           protocol: TCP
+      livenessProbe:
+        exec:
+          command:
+            - "curl"
+            - "--fail"
+            - "http://localhost:9898/"
       resources: {}
       securityContext:
         allowPrivilegeEscalation: true
@@ -213,13 +216,6 @@ spec:
         privileged: false
         readOnlyRootFilesystem: false
         seLinuxOptions: {}
-      healthcheck:
-        test: curl http://localhost:9898 || exit 1
-        interval: 30s
-        timeout: 60s
-        retries: 5
-        start_period: 300s
-      restart: always
       volumeMounts:
         - mountPath: /www/assets
           name: homer-config
