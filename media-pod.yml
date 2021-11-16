@@ -174,29 +174,19 @@ spec:
           name: sabnzbd-downloads
       workingDir: /
     - command:
-        - /bin/sh
-        - /entrypoint.sh
+        - /init
       env:
-        - name: PATH
-          value: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-        - name: TERM
-          value: xterm
-        - name: container
-          value: podman
-        - name: PORT
-          value: "9898"
-        - name: USER
-          value: darkhttpd
-        - name: GROUP
-          value: darkhttpd
-        - name: GID
+        - name: PUID
           value: "1001"
-        - name: UID
+        - name: PGID
           value: "1001"
-      image: docker.io/b4bz/homer:latest
-      name: homer
+        - name: HOME
+        - name: TZ
+          value: America/New_York
+      image: lscr.io/linuxserver/heimdall:latest
+      name: heimdall
       ports:
-        - containerPort: 9898
+        - containerPort: 443
           hostPort: 9898
           protocol: TCP
       livenessProbe:
@@ -217,8 +207,8 @@ spec:
         readOnlyRootFilesystem: false
         seLinuxOptions: {}
       volumeMounts:
-        - mountPath: /www/assets
-          name: homer-config
+        - mountPath: /config
+          name: heimdall-config
       workingDir: /
   dnsConfig: {}
   restartPolicy: Never
@@ -256,7 +246,7 @@ spec:
         type: Directory
       name: jobs
     - hostPath:
-        path: /srv/containers/homer
+        path: /srv/containers/heimdall
         type: Directory
-      name: homer-config
+      name: heimdall-config
 status: {}
