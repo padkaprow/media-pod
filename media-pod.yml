@@ -40,8 +40,9 @@ spec:
         exec:
           command:
             - "curl"
+            - "-k"
             - "--fail"
-            - "http://localhost:8080/"
+            - "https://downloads.thulita.com/"
       resources: {}
       securityContext:
         allowPrivilegeEscalation: true
@@ -98,8 +99,9 @@ spec:
         exec:
           command:
             - "curl"
+            - "-k"
             - "--fail"
-            - "http://localhost:8989/"
+            - "https://tv.thulita.com/"
       resources: {}
       securityContext:
         allowPrivilegeEscalation: true
@@ -152,8 +154,9 @@ spec:
         exec:
           command:
             - "curl"
+            - "-k"
             - "--fail"
-            - "http://localhost:7878/"
+            - "https://movies.thulita.com/"
       resources: {}
       securityContext:
         allowPrivilegeEscalation: true
@@ -183,7 +186,7 @@ spec:
         - name: HOME
         - name: TZ
           value: America/New_York
-      image: lscr.io/linuxserver/heimdall:latest
+      image: docker.io/linuxserver/heimdall:latest
       name: heimdall
       ports:
         - containerPort: 443
@@ -193,8 +196,9 @@ spec:
         exec:
           command:
             - "curl"
+            - "-k"
             - "--fail"
-            - "http://localhost:9898/"
+            - "https://apps.thulita.com/"
       resources: {}
       securityContext:
         allowPrivilegeEscalation: true
