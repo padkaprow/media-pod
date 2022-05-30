@@ -1,0 +1,214 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: "2021-09-19T19:53:55+00:00"
+  labels:
+    app: media-pod
+  name: media-pod
+spec:
+  containers:
+    - command:
+        - /init
+      env:
+        - name: PATH
+          value: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+        - name: TERM
+          value: xterm
+        - name: container
+          value: podman
+        - name: PYTHONIOENCODING
+          value: utf-8
+        - name: PUID
+          value: "1001"
+        - name: LANGUAGE
+          value: en_US.UTF-8
+        - name: LANG
+          value: en_US.UTF-8
+        - name: PGID
+          value: "1001"
+        - name: TZ
+          value: America/New_York
+        - name: HOME
+          value: /config
+      image: docker.io/linuxserver/sabnzbd:latest
+      name: sabnzbd
+      ports:
+        - containerPort: 8080
+          hostPort: 8080
+          protocol: TCP
+      livenessProbe:
+        exec:
+          command:
+            - "curl"
+            - "-k"
+            - "--fail"
+            - "https://downloads.thulita.com/"
+      resources: {}
+      securityContext:
+        allowPrivilegeEscalation: true
+        capabilities:
+          drop:
+            - CAP_MKNOD
+            - CAP_NET_RAW
+            - CAP_AUDIT_WRITE
+        privileged: false
+        readOnlyRootFilesystem: false
+        seLinuxOptions: {}
+      volumeMounts:
+        - mountPath: /downloads
+          name: sabnzbd-downloads
+        - mountPath: /incomplete-downloads
+          name: incomplete-downloads
+        - mountPath: /jobs
+          name: jobs
+        - mountPath: /config
+          name: sabnzbd-config
+      workingDir: /
+    - command:
+        - /init
+      env:
+        - name: PATH
+          value: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+        - name: TERM
+          value: xterm
+        - name: container
+          value: podman
+        - name: HOME
+          value: /root
+        - name: LANG
+          value: en_US.UTF-8
+        - name: PGID
+          value: "1001"
+        - name: PUID
+          value: "1001"
+        - name: LANGUAGE
+          value: en_US.UTF-8
+        - name: XDG_CONFIG_HOME
+          value: /config/xdg
+        - name: SONARR_BRANCH
+          value: main
+        - name: TZ
+          value: America/New_York
+      image: docker.io/linuxserver/sonarr:latest
+      name: sonarr
+      ports:
+        - containerPort: 8989
+          hostPort: 8989
+          protocol: TCP
+      livenessProbe:
+        exec:
+          command:
+            - "curl"
+            - "-k"
+            - "--fail"
+            - "https://tv.thulita.com/"
+      resources: {}
+      securityContext:
+        allowPrivilegeEscalation: true
+        capabilities:
+          drop:
+            - CAP_MKNOD
+            - CAP_NET_RAW
+            - CAP_AUDIT_WRITE
+        privileged: false
+        readOnlyRootFilesystem: false
+        seLinuxOptions: {}
+      volumeMounts:
+        - mountPath: /config
+          name: sonarr-config
+        - mountPath: /tv
+          name: tv
+        - mountPath: /downloads
+          name: sabnzbd-downloads
+      workingDir: /
+    - command:
+        - /init
+      env:
+        - name: PATH
+          value: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+        - name: TERM
+          value: xterm
+        - name: container
+          value: podman
+        - name: TZ
+          value: America/New_York
+        - name: HOME
+          value: /root
+        - name: LANGUAGE
+          value: en_US.UTF-8
+        - name: LANG
+          value: en_US.UTF-8
+        - name: XDG_CONFIG_HOME
+          value: /config/xdg
+        - name: PGID
+          value: "1001"
+        - name: PUID
+          value: "1001"
+      image: docker.io/linuxserver/radarr:latest
+      name: radarr
+      ports:
+        - containerPort: 7878
+          hostPort: 7878
+          protocol: TCP
+      livenessProbe:
+        exec:
+          command:
+            - "curl"
+            - "-k"
+            - "--fail"
+            - "https://movies.thulita.com/"
+      resources: {}
+      securityContext:
+        allowPrivilegeEscalation: true
+        capabilities:
+          drop:
+            - CAP_MKNOD
+            - CAP_NET_RAW
+            - CAP_AUDIT_WRITE
+        privileged: false
+        readOnlyRootFilesystem: false
+        seLinuxOptions: {}
+      volumeMounts:
+        - mountPath: /config
+          name: radarr-config
+        - mountPath: /movies
+          name: movies
+        - mountPath: /downloads
+          name: sabnzbd-downloads
+      workingDir: /
+  dnsConfig: {}
+  restartPolicy: Never
+  volumes:
+    - hostPath:
+        path: /srv/samba/tv
+        type: Directory
+      name: tv
+    - hostPath:
+        path: /srv/samba/movies
+        type: Directory
+      name: movies
+    - hostPath:
+        path: /srv/containers/sonarr/config
+        type: Directory
+      name: sonarr-config
+    - hostPath:
+        path: /srv/containers/radarr/config
+        type: Directory
+      name: radarr-config
+    - hostPath:
+        path: /srv/containers/sabnzbd/config
+        type: Directory
+      name: sabnzbd-config
+    - hostPath:
+        path: /srv/containers/sabnzbd/downloads
+        type: Directory
+      name: sabnzbd-downloads
+    - hostPath:
+        path: /srv/containers/sabnzbd/incomplete-downloads
+        type: Directory
+      name: incomplete-downloads
+    - hostPath:
+        path: /srv/containers/sabnzbd/jobs
+        type: Directory
+      name: jobs
+status: {}
