@@ -36,13 +36,6 @@ spec:
         - containerPort: 8080
           hostPort: 8080
           protocol: TCP
-      livenessProbe:
-        exec:
-          command:
-            - "curl"
-            - "-k"
-            - "--fail"
-            - "https://downloads.thulita.com/"
       resources: {}
       securityContext:
         allowPrivilegeEscalation: true
@@ -95,13 +88,6 @@ spec:
         - containerPort: 8989
           hostPort: 8989
           protocol: TCP
-      livenessProbe:
-        exec:
-          command:
-            - "curl"
-            - "-k"
-            - "--fail"
-            - "https://tv.thulita.com/"
       resources: {}
       securityContext:
         allowPrivilegeEscalation: true
@@ -150,13 +136,6 @@ spec:
         - containerPort: 7878
           hostPort: 7878
           protocol: TCP
-      livenessProbe:
-        exec:
-          command:
-            - "curl"
-            - "-k"
-            - "--fail"
-            - "https://movies.thulita.com/"
       resources: {}
       securityContext:
         allowPrivilegeEscalation: true

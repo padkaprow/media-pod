@@ -1,0 +1,158 @@
+# Save the output of this file and use kubectl create -f to import
+# it into Kubernetes.
+#
+# Created with podman-4.2.1
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    io.kubernetes.cri-o.ContainerType/media-pod-radarr: container
+    io.kubernetes.cri-o.ContainerType/media-pod-sabnzbd: container
+    io.kubernetes.cri-o.ContainerType/media-pod-sonarr: container
+    io.kubernetes.cri-o.SandboxID/media-pod-radarr: c95157398aa8e54846369a0befebee591ce7db4a4996f85b59f8cf6b99c8940
+    io.kubernetes.cri-o.SandboxID/media-pod-sabnzbd: c95157398aa8e54846369a0befebee591ce7db4a4996f85b59f8cf6b99c8940
+    io.kubernetes.cri-o.SandboxID/media-pod-sonarr: c95157398aa8e54846369a0befebee591ce7db4a4996f85b59f8cf6b99c8940
+    io.podman.annotations.autoremove/media-pod-radarr: "FALSE"
+    io.podman.annotations.autoremove/media-pod-sabnzbd: "FALSE"
+    io.podman.annotations.autoremove/media-pod-sonarr: "FALSE"
+    io.podman.annotations.init/media-pod-radarr: "FALSE"
+    io.podman.annotations.init/media-pod-sabnzbd: "FALSE"
+    io.podman.annotations.init/media-pod-sonarr: "FALSE"
+    io.podman.annotations.privileged/media-pod-radarr: "FALSE"
+    io.podman.annotations.privileged/media-pod-sabnzbd: "FALSE"
+    io.podman.annotations.privileged/media-pod-sonarr: "FALSE"
+    io.podman.annotations.publish-all/media-pod-radarr: "FALSE"
+    io.podman.annotations.publish-all/media-pod-sabnzbd: "FALSE"
+    io.podman.annotations.publish-all/media-pod-sonarr: "FALSE"
+  creationTimestamp: "2022-11-08T07:18:31Z"
+  labels:
+    app: media-pod
+  name: media-pod
+spec:
+  containers:
+  - env:
+    - name: PUID
+      value: "1001"
+    - name: LANGUAGE
+      value: en_US.UTF-8
+    - name: LANG
+      value: en_US.UTF-8
+    - name: PGID
+      value: "1001"
+    - name: TZ
+      value: America/New_York
+    image: docker.io/linuxserver/sabnzbd:latest
+    name: media-pod-sabnzbd
+    ports:
+    - containerPort: 7878
+      hostPort: 7878
+    - containerPort: 8080
+      hostPort: 8080
+    - containerPort: 8989
+      hostPort: 8989
+    resources: {}
+    securityContext:
+      capabilities:
+        drop:
+        - CAP_MKNOD
+        - CAP_NET_RAW
+        - CAP_AUDIT_WRITE
+    volumeMounts:
+    - mountPath: /downloads
+      name: srv-containers-sabnzbd-downloads-host-0
+    - mountPath: /incomplete-downloads
+      name: srv-containers-sabnzbd-incomplete-downloads-host-1
+    - mountPath: /jobs
+      name: srv-containers-sabnzbd-jobs-host-2
+    - mountPath: /config
+      name: srv-containers-sabnzbd-config-host-3
+  - env:
+    - name: PGID
+      value: "1001"
+    - name: TZ
+      value: America/New_York
+    - name: PUID
+      value: "1001"
+    image: docker.io/linuxserver/sonarr:latest
+    name: media-pod-sonarr
+    resources: {}
+    securityContext:
+      capabilities:
+        drop:
+        - CAP_MKNOD
+        - CAP_NET_RAW
+        - CAP_AUDIT_WRITE
+    volumeMounts:
+    - mountPath: /config
+      name: srv-containers-sonarr-config-host-0
+    - mountPath: /tv
+      name: srv-samba-tv-host-1
+    - mountPath: /downloads
+      name: srv-containers-sabnzbd-downloads-host-2
+  - env:
+    - name: TZ
+      value: America/New_York
+    - name: LANGUAGE
+      value: en_US.UTF-8
+    - name: LANG
+      value: en_US.UTF-8
+    - name: PGID
+      value: "1001"
+    - name: PUID
+      value: "1001"
+    image: docker.io/linuxserver/radarr:latest
+    name: media-pod-radarr
+    resources: {}
+    securityContext:
+      capabilities:
+        drop:
+        - CAP_MKNOD
+        - CAP_NET_RAW
+        - CAP_AUDIT_WRITE
+    volumeMounts:
+    - mountPath: /config
+      name: srv-containers-radarr-config-host-0
+    - mountPath: /movies
+      name: srv-samba-movies-host-1
+    - mountPath: /downloads
+      name: srv-containers-sabnzbd-downloads-host-2
+  hostname: media-pod
+  restartPolicy: Never
+  volumes:
+  - hostPath:
+      path: /srv/containers/sabnzbd/downloads
+      type: Directory
+    name: srv-containers-sabnzbd-downloads-host-0
+  - hostPath:
+      path: /srv/containers/sabnzbd/incomplete-downloads
+      type: Directory
+    name: srv-containers-sabnzbd-incomplete-downloads-host-1
+  - hostPath:
+      path: /srv/containers/sabnzbd/downloads
+      type: Directory
+    name: srv-containers-sabnzbd-downloads-host-2
+  - hostPath:
+      path: /srv/containers/radarr/config
+      type: Directory
+    name: srv-containers-radarr-config-host-0
+  - hostPath:
+      path: /srv/containers/sabnzbd/jobs
+      type: Directory
+    name: srv-containers-sabnzbd-jobs-host-2
+  - hostPath:
+      path: /srv/containers/sabnzbd/config
+      type: Directory
+    name: srv-containers-sabnzbd-config-host-3
+  - hostPath:
+      path: /srv/containers/sonarr/config
+      type: Directory
+    name: srv-containers-sonarr-config-host-0
+  - hostPath:
+      path: /srv/samba/tv
+      type: Directory
+    name: srv-samba-tv-host-1
+  - hostPath:
+      path: /srv/samba/movies
+      type: Directory
+    name: srv-samba-movies-host-1
+status: {}
