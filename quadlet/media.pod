@@ -1,0 +1,5 @@
+[Pod]
+PodName=media
+PublishPort=8080:8080
+PublishPort=8989:8989
+PublishPort=7878:7878

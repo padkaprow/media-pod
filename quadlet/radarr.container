@@ -1,0 +1,23 @@
+[Unit]
+Description=radarr quadlet
+
+[Container]
+Image=docker.io/linuxserver/radarr:latest
+ContainerName=radarr
+Pull=always
+Pod=media.pod
+
+Network=
+
+Volume=/srv/containers/sabnzbd/downloads:/downloads:Z
+Volume=/srv/containers/radarr/config:/config:Z
+Volume=/srv/samba/movies:/movies:Z
+
+EnvironmentFile=radarr.env
+
+[Service]
+Restart=always
+TimeoutStartSec=900
+
+[Install]
+WantedBy=multi-user.target default.target

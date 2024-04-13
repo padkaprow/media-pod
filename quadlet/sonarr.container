@@ -1,0 +1,23 @@
+[Unit]
+Description=sonarr quadlet
+
+[Container]
+Image=docker.io/linuxserver/sonarr:latest
+ContainerName=sonarr
+Pull=always
+Pod=media.pod
+
+Network=
+
+Volume=/srv/containers/sabnzbd/downloads:/downloads:Z
+Volume=/srv/containers/sonarr/config:/config:Z
+Volume=/srv/samba/tv:/tv:Z
+
+EnvironmentFile=sonarr.env
+
+[Service]
+Restart=always
+TimeoutStartSec=900
+
+[Install]
+WantedBy=multi-user.target default.target
