@@ -3,6 +3,7 @@ kind: Pod
 metadata:
   labels:
     app: media-pod
+    io.containers.autoupdate: image
   name: media-pod
 spec:
   containers:
