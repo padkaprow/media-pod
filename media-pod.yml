@@ -23,6 +23,7 @@ spec:
     ports:
     - containerPort: 8080
       hostPort: 8080
+    restart: unless-stopped
     volumeMounts:
     - mountPath: /downloads
       name: sabnzbd-downloads
@@ -32,6 +33,26 @@ spec:
       name: sabnzbd-jobs
     - mountPath: /config
       name: sabnzbd-config
+  - env:
+    - name: LANG
+      value: en_US.UTF-8
+    - name: TZ
+      value: America/New_York
+    - name: PGID
+      value: "1001"
+    - name: LANGUAGE
+      value: en_US.UTF-8
+    - name: PUID
+      value: "1001"
+    image: docker.io/linuxserver/prowlarr:latest
+    name: prowlarr
+    ports:
+    - containerPort: 9696
+      hostPort: 9696
+    restart: unless-stopped      
+    volumeMounts:
+    - mountPath: /config
+      name: prowlarr-config
   - env:
     - name: PUID
       value: "1001"
@@ -44,6 +65,7 @@ spec:
     ports:
       - containerPort: 8989
         hostPort: 8989
+    restart: unless-stopped
     volumeMounts:
     - mountPath: /config
       name: sonarr-config
@@ -67,6 +89,7 @@ spec:
     ports:
     - containerPort: 7878
       hostPort: 7878
+    restart: unless-stopped
     volumeMounts:
     - mountPath: /config
       name: radarr-config
@@ -74,7 +97,99 @@ spec:
       name: samba-movies
     - mountPath: /downloads
       name: sabnzbd-downloads
+  - env:
+    - name: LANG
+      value: en_US.UTF-8
+    - name: TZ
+      value: America/New_York
+    - name: PGID
+      value: "1001"
+    - name: LANGUAGE
+      value: en_US.UTF-8
+    - name: PUID
+      value: "1001"
+    image: docker.io/linuxserver/lidarr:latest
+    name: lidarr
+    ports:
+    - containerPort: 8686
+      hostPort: 8686 
+    restart: unless-stopped
+    volumeMounts:
+    - mountPath: /config
+      name: lidarr-config
+    - mountPath: /music
+      name: samba-music
+    - mountPath: /downloads
+      name: sabnzbd-downloads
+  - env:
+    - name: LANG
+      value: en_US.UTF-8
+    - name: TZ
+      value: America/New_York
+    - name: PGID
+      value: "1001"
+    - name: LANGUAGE
+      value: en_US.UTF-8
+    - name: PUID
+      value: "1001"
+    image: docker.io/linuxserver/readarr:develop
+    name: readarr
+    ports:
+    - containerPort: 8787
+      hostPort: 8787
+    restart: unless-stopped
+    volumeMounts:
+    - mountPath: /config
+      name: readarr-config
+    - mountPath: /books
+      name: samba-books
+    - mountPath: /downloads
+      name: sabnzbd-downloads
+  - env:
+    - name: LANG
+      value: en_US.UTF-8
+    - name: TZ
+      value: America/New_York
+    - name: PGID
+      value: "1001"
+    - name: LANGUAGE
+      value: en_US.UTF-8
+    - name: PUID
+      value: "1001"
+    image: docker.io/linuxserver/mylar3:latest
+    name: mylar
+    ports:
+    - containerPort: 8090
+      hostPort: 8090
+    restart: unless-stopped
+    volumeMounts:
+    - mountPath: /config
+      name: mylar-config
+    - mountPath: /comics
+      name: samba-comics
+    - mountPath: /downloads
+      name: sabnzbd-downloads
   volumes:
+  - hostPath:
+      path: /srv/containers/sabnzbd/config
+      type: Directory
+    name: sabnzbd-config
+  - hostPath:
+      path: /srv/containers/sabnzbd/jobs
+      type: Directory
+    name: sabnzbd-jobs
+  - hostPath:
+      path: /srv/containers/sabnzbd/incomplete-downloads
+      type: Directory
+    name: sabnzbd-incomplete
+  - hostPath:
+      path: /srv/containers/sabnzbd/downloads
+      type: Directory
+    name: sabnzbd-downloads
+  - hostPath:
+      path: /srv/containers/prowlarr/config
+      type: Directory
+    name: prowlarr-config
   - hostPath:
       path: /srv/containers/sonarr/config
       type: Directory
@@ -84,21 +199,17 @@ spec:
       type: Directory
     name: radarr-config
   - hostPath:
-      path: /srv/containers/sabnzbd/config
+      path: /srv/containers/lidarr/config
       type: Directory
-    name: sabnzbd-config
+    name: lidarr-config
   - hostPath:
-      path: /srv/containers/sabnzbd/incomplete-downloads
+      path: /srv/containers/readarr/config
       type: Directory
-    name: sabnzbd-incomplete
+    name: readarr-config
   - hostPath:
-      path: /srv/containers/sabnzbd/jobs
+      path: /srv/containers/mylar/config
       type: Directory
-    name: sabnzbd-jobs
-  - hostPath:
-      path: /srv/containers/sabnzbd/downloads
-      type: Directory
-    name: sabnzbd-downloads
+    name: mylar-config
   - hostPath:
       path: /srv/samba/tv
       type: Directory
@@ -107,3 +218,15 @@ spec:
       path: /srv/samba/movies
       type: Directory
     name: samba-movies
+  - hostPath:
+      path: /srv/samba/music
+      type: Directory
+    name: samba-music
+  - hostPath:
+      path: /srv/samba/books
+      type: Directory
+    name: samba-books
+  - hostPath:
+      path: /srv/samba/comics
+      type: Directory
+    name: samba-comics
