@@ -1,6 +1,9 @@
 apiVersion: v1
 kind: Pod
 metadata:
+  annotations:
+    bind-mount-options: /srv/containers/jellyfin/cache:Z
+  creationTimestamp: "2024-05-17T20:10:02Z"
   labels:
     app: media-pod
     io.containers.autoupdate: image
@@ -34,16 +37,16 @@ spec:
     - mountPath: /config
       name: sabnzbd-config
   - env:
-    - name: LANG
-      value: en_US.UTF-8
-    - name: TZ
-      value: America/New_York
-    - name: PGID
-      value: "1001"
-    - name: LANGUAGE
-      value: en_US.UTF-8
     - name: PUID
       value: "1001"
+    - name: PGID
+      value: "1001"
+    - name: TZ
+      value: America/New_York
+    - name: LANG
+      value: en_US.UTF-8
+    - name: LANGUAGE
+      value: en_US.UTF-8
     image: docker.io/linuxserver/prowlarr:latest
     name: prowlarr
     ports:
@@ -56,10 +59,14 @@ spec:
   - env:
     - name: PUID
       value: "1001"
-    - name: TZ
-      value: America/New_York
     - name: PGID
       value: "1001"
+    - name: TZ
+      value: America/New_York
+    - name: LANG
+      value: en_US.UTF-8
+    - name: LANGUAGE
+      value: en_US.UTF-8
     image: docker.io/linuxserver/sonarr:latest
     name: sonarr
     ports:
@@ -74,16 +81,16 @@ spec:
     - mountPath: /downloads
       name: sabnzbd-downloads
   - env:
-    - name: LANG
-      value: en_US.UTF-8
-    - name: TZ
-      value: America/New_York
-    - name: PGID
-      value: "1001"
-    - name: LANGUAGE
-      value: en_US.UTF-8
     - name: PUID
       value: "1001"
+    - name: PGID
+      value: "1001"
+    - name: TZ
+      value: America/New_York
+    - name: LANG
+      value: en_US.UTF-8
+    - name: LANGUAGE
+      value: en_US.UTF-8
     image: docker.io/linuxserver/radarr:latest
     name: radarr
     ports:
@@ -98,16 +105,16 @@ spec:
     - mountPath: /downloads
       name: sabnzbd-downloads
   - env:
-    - name: LANG
-      value: en_US.UTF-8
-    - name: TZ
-      value: America/New_York
-    - name: PGID
-      value: "1001"
-    - name: LANGUAGE
-      value: en_US.UTF-8
     - name: PUID
       value: "1001"
+    - name: PGID
+      value: "1001"
+    - name: TZ
+      value: America/New_York
+    - name: LANG
+      value: en_US.UTF-8
+    - name: LANGUAGE
+      value: en_US.UTF-8
     image: docker.io/linuxserver/lidarr:latest
     name: lidarr
     ports:
@@ -122,16 +129,16 @@ spec:
     - mountPath: /downloads
       name: sabnzbd-downloads
   - env:
-    - name: LANG
-      value: en_US.UTF-8
-    - name: TZ
-      value: America/New_York
-    - name: PGID
-      value: "1001"
-    - name: LANGUAGE
-      value: en_US.UTF-8
     - name: PUID
       value: "1001"
+    - name: PGID
+      value: "1001"
+    - name: TZ
+      value: America/New_York
+    - name: LANG
+      value: en_US.UTF-8
+    - name: LANGUAGE
+      value: en_US.UTF-8
     image: docker.io/linuxserver/readarr:develop
     name: readarr
     ports:
@@ -155,12 +162,18 @@ spec:
     - name: LANGUAGE
       value: en_US.UTF-8
     - name: PUID
-      value: "1001"
+      value: "1001" 
+    - name: JELLYFIN_PublishedServerUrl
+      value: "192.168.2.79"
     image: docker.io/jellyfin/jellyfin:latest
     name: jellyfin
     ports:
     - containerPort: 8096
       hostPort: 8096
+    - containerPort: 7359
+      hostPort: 7359
+    - containerPort: 1900
+      hostPort: 1900
     restart: no
     volumeMounts:
     - mountPath: /config
