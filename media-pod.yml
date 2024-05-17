@@ -156,24 +156,22 @@ spec:
       value: en_US.UTF-8
     - name: PUID
       value: "1001"
-    image: docker.io/linuxserver/mylar3:latest
-    name: mylar
+    image: docker.io/jellyfin/jellyfin:latest
+    name: jellyfin
     ports:
-    - containerPort: 8090
-      hostPort: 8090
-    restart: unless-stopped
+    - containerPort: 8096
+      hostPort: 8096
+    restart: no
     volumeMounts:
     - mountPath: /config
-      name: mylar-config
-    - mountPath: /comics
-      name: samba-comics
-    - mountPath: /downloads
-      name: sabnzbd-downloads
+      name: jellyfin-config
+    - mountPath: /cache
+      name: jellyfin-cache
+    - mountPath: /tv
+      name: samba-tv
+    - mountPath: /movies
+      name: samba-movies
   volumes:
-  - hostPath:
-      path: /srv/containers/sabnzbd/config
-      type: Directory
-    name: sabnzbd-config
   - hostPath:
       path: /srv/containers/sabnzbd/jobs
       type: Directory
@@ -187,29 +185,37 @@ spec:
       type: Directory
     name: sabnzbd-downloads
   - hostPath:
-      path: /srv/containers/prowlarr/config
+      path: /srv/containers/sabnzbd/config
       type: Directory
-    name: prowlarr-config
-  - hostPath:
-      path: /srv/containers/sonarr/config
-      type: Directory
-    name: sonarr-config
-  - hostPath:
-      path: /srv/containers/radarr/config
-      type: Directory
-    name: radarr-config
+    name: sabnzbd-config
   - hostPath:
       path: /srv/containers/lidarr/config
       type: Directory
     name: lidarr-config
   - hostPath:
+      path: /srv/containers/prowlarr/config
+      type: Directory
+    name: prowlarr-config
+  - hostPath:
+      path: /srv/containers/radarr/config
+      type: Directory
+    name: radarr-config
+  - hostPath:
       path: /srv/containers/readarr/config
       type: Directory
     name: readarr-config
   - hostPath:
-      path: /srv/containers/mylar/config
+      path: /srv/containers/sonarr/config
       type: Directory
-    name: mylar-config
+    name: sonarr-config
+  - hostPath:
+      path: /srv/containers/jellyfin/config
+      type: Directory
+    name: jellyfin-config
+  - hostPath:
+      path: /srv/containers/jellyfin/cache
+      type: Directory
+    name: jellyfin-cache
   - hostPath:
       path: /srv/samba/tv
       type: Directory
@@ -226,7 +232,3 @@ spec:
       path: /srv/samba/books
       type: Directory
     name: samba-books
-  - hostPath:
-      path: /srv/samba/comics
-      type: Directory
-    name: samba-comics
