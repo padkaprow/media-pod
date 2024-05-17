@@ -2,11 +2,11 @@ apiVersion: v1
 kind: Pod
 metadata:
   annotations:
-    bind-mount-options: /srv/containers/jellyfin/cache:Z
-  creationTimestamp: "2024-05-17T20:10:02Z"
+    bind-mount-options: /srv/containers/jellyfin/config:Z
+    io.containers.autoupdate: image
+  creationTimestamp: "2024-05-17T21:08:34Z"
   labels:
     app: media-pod
-    io.containers.autoupdate: image
   name: media-pod
 spec:
   containers:
@@ -153,37 +153,22 @@ spec:
     - mountPath: /downloads
       name: sabnzbd-downloads
   - env:
-    - name: LANG
-      value: en_US.UTF-8
-    - name: TZ
-      value: America/New_York
-    - name: PGID
-      value: "1001"
-    - name: LANGUAGE
-      value: en_US.UTF-8
-    - name: PUID
-      value: "1001" 
-    - name: JELLYFIN_PublishedServerUrl
-      value: "192.168.2.79"
+    - name: TERM
+      value: xterm
     image: docker.io/jellyfin/jellyfin:latest
     name: jellyfin
     ports:
     - containerPort: 8096
       hostPort: 8096
-    - containerPort: 7359
-      hostPort: 7359
-    - containerPort: 1900
-      hostPort: 1900
-    restart: no
+    tty: true
     volumeMounts:
-    - mountPath: /config
-      name: jellyfin-config
+    - mountPath: /media
+      name: samba-root
+      readOnly: true
     - mountPath: /cache
       name: jellyfin-cache
-    - mountPath: /tv
-      name: samba-tv
-    - mountPath: /movies
-      name: samba-movies
+    - mountPath: /config
+      name: jellyfin-config
   volumes:
   - hostPath:
       path: /srv/containers/sabnzbd/jobs
@@ -245,3 +230,7 @@ spec:
       path: /srv/samba/books
       type: Directory
     name: samba-books
+  - hostPath:
+      path: /srv/samba
+      type: Directory
+    name: samba-root
