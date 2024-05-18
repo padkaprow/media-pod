@@ -3,11 +3,11 @@ kind: Pod
 metadata:
   annotations:
     bind-mount-options: /srv/containers/jellyfin/config:Z
-    io.containers.autoupdate/myjellyfin: registry
+    io.containers.autoupdate: image
   creationTimestamp: "2024-05-17T21:08:34Z"
   labels:
-    app: jellypod
-  name: jellypod
+    app: jellyfin-pod
+  name: jellyfin-pod
 spec:
   containers:
   - env:
