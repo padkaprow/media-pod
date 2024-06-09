@@ -4,20 +4,21 @@ metadata:
   annotations:
     bind-mount-options: /srv/containers/jellyfin/config:Z
     io.containers.autoupdate: image
-  creationTimestamp: "2024-05-17T21:08:34Z"
+  creationTimestamp: "2024-06-09T20:46:10.988287972Z"
   labels:
-    app: jellyfin-pod
-  name: jellyfin-pod
+    app: jellyfinOne
+  name: jellyfinOne
 spec:
   containers:
   - env:
     - name: TERM
       value: xterm
     image: docker.io/jellyfin/jellyfin:latest
-    name: jellyfin
+    name: jellyfinOne
     ports:
     - containerPort: 8096
       hostPort: 8096
+    stdin: true
     tty: true
     volumeMounts:
     - mountPath: /media
@@ -30,11 +31,11 @@ spec:
   volumes:
   - hostPath:
       path: /srv/containers/jellyfin/cache
-      type: Directory
+      type: DirectoryOrCreate
     name: jellyfin-cache
   - hostPath:
       path: /srv/containers/jellyfin/config
-      type: Directory
+      type: DirectoryOrCreate
     name: jellyfin-config
   - hostPath:
       path: /srv/samba
