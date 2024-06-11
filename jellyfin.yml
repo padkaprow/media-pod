@@ -4,22 +4,26 @@ metadata:
   annotations:
     bind-mount-options: /srv/containers/jellyfin/config:Z
     io.containers.autoupdate: image
-  creationTimestamp: "2024-06-09T20:46:10.988287972Z"
+  creationTimestamp: "2024-06-11T21:50:59+00:00"
   labels:
-    app: jellyfinOne
-  name: jellyfinOne
+    app: jellyPod
+  name: jellyPod
 spec:
   containers:
   - env:
     - name: TERM
       value: xterm
     image: docker.io/jellyfin/jellyfin:latest
-    name: jellyfinOne
+    name: jellyfin
     ports:
-    - containerPort: 8096
+    - containerPort: 8096 #HTTP Traffic
       hostPort: 8096
-    - containerPort: 8920
+    - containerPort: 8920 #HTTPS Traffic
       hostPort: 8920
+    - containerPort: 1900 #Service Discovery
+      hostPort: 1900
+    - containerPort: 7359 #Client Discovery
+      hostPort: 7359
     stdin: true
     tty: true
     volumeMounts:
