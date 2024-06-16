@@ -4,7 +4,7 @@ metadata:
   annotations:
     bind-mount-options: /srv/containers/jellyfin/config:Z
     io.containers.autoupdate: image
-  creationTimestamp: "2024-06-11T21:50:59+00:00"
+  creationTimestamp: "2024-06-16T15:55:45Z"
   labels:
     app: jellyPod
   name: jellyPod

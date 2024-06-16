@@ -3,31 +3,31 @@ kind: Pod
 metadata: 
   annotations:
     bind-mount-options: /srv/containers/jellyfin/config:Z
-    bind-mount-options/media-pod-jellyfin: /srv/containers/jellyfin/config:Z
-    bind-mount-options/media-pod-lidarr: /srv/containers/jellyfin/config:Z
-    bind-mount-options/media-pod-prowlarr: /srv/containers/jellyfin/config:Z
-    bind-mount-options/media-pod-radarr: /srv/containers/jellyfin/config:Z
-    bind-mount-options/media-pod-readarr: /srv/containers/jellyfin/config:Z
-    bind-mount-options/media-pod-sabnzbd: /srv/containers/jellyfin/config:Z
-    bind-mount-options/media-pod-sonarr: /srv/containers/jellyfin/config:Z
-    io.containers.autoupdate/media-pod-jellyfin: image
-    io.containers.autoupdate/media-pod-lidarr: image
-    io.containers.autoupdate/media-pod-prowlarr: image
-    io.containers.autoupdate/media-pod-radarr: image
-    io.containers.autoupdate/media-pod-readarr: image
-    io.containers.autoupdate/media-pod-sabnzbd: image
-    io.containers.autoupdate/media-pod-sonarr: image
-    io.podman.annotations.kube.health.check/media-pod-jellyfin: "true"
-    io.podman.annotations.kube.health.check/media-pod-lidarr: "true"
-    io.podman.annotations.kube.health.check/media-pod-prowlarr: "true"
-    io.podman.annotations.kube.health.check/media-pod-radarr: "true"
-    io.podman.annotations.kube.health.check/media-pod-readarr: "true"
-    io.podman.annotations.kube.health.check/media-pod-sabnzbd: "true"
-    io.podman.annotations.kube.health.check/media-pod-sonarr: "true"
-  creationTimestamp: "2024-05-18T00:14:42Z"
+    bind-mount-options/mediaPod-jellyfin: /srv/containers/jellyfin/config:Z
+    bind-mount-options/mediaPod-lidarr: /srv/containers/jellyfin/config:Z
+    bind-mount-options/mediaPod-prowlarr: /srv/containers/jellyfin/config:Z
+    bind-mount-options/mediaPod-radarr: /srv/containers/jellyfin/config:Z
+    bind-mount-options/mediaPod-readarr: /srv/containers/jellyfin/config:Z
+    bind-mount-options/mediaPod-sabnzbd: /srv/containers/jellyfin/config:Z
+    bind-mount-options/mediaPod-sonarr: /srv/containers/jellyfin/config:Z
+    io.containers.autoupdate/mediaPod-jellyfin: image
+    io.containers.autoupdate/mediaPod-lidarr: image
+    io.containers.autoupdate/mediaPod-prowlarr: image
+    io.containers.autoupdate/mediaPod-radarr: image
+    io.containers.autoupdate/mediaPod-readarr: image
+    io.containers.autoupdate/mediaPod-sabnzbd: image
+    io.containers.autoupdate/mediaPod-sonarr: image
+    io.podman.annotations.kube.health.check/mediaPod-jellyfin: "true"
+    io.podman.annotations.kube.health.check/mediaPod-lidarr: "true"
+    io.podman.annotations.kube.health.check/mediaPod-prowlarr: "true"
+    io.podman.annotations.kube.health.check/mediaPod-radarr: "true"
+    io.podman.annotations.kube.health.check/mediaPod-readarr: "true"
+    io.podman.annotations.kube.health.check/mediaPod-sabnzbd: "true"
+    io.podman.annotations.kube.health.check/mediaPod-sonarr: "true"
+  creationTimestamp: "2024-06-16T15:55:45Z"
   labels:
-    app: media-pod
-  name: media-pod
+    app: mediaPod
+  name: mediaPod
 spec:
   containers:
   - env:
@@ -36,8 +36,16 @@ spec:
     image: docker.io/jellyfin/jellyfin:latest
     name: jellyfin
     ports:
-    - containerPort: 8096
+    - containerPort: 8096 #HTTP Traffic
       hostPort: 8096
+    - containerPort: 8920 #HTTPS Traffic
+      hostPort: 8920
+    - containerPort: 1900 #Service Discovery
+      hostPort: 1900
+    - containerPort: 7359 #Client Discovery
+      hostPort: 7359
+    restart: unless-stopped
+    stdin: true
     tty: true
     volumeMounts:
     - mountPath: /media
@@ -228,11 +236,11 @@ spec:
     name: sonarr-config
   - hostPath:
       path: /srv/containers/jellyfin/config
-      type: Directory
+      type: DirectoryOrCreate
     name: jellyfin-config
   - hostPath:
       path: /srv/containers/jellyfin/cache
-      type: Directory
+      type: DirectoryOrCreate
     name: jellyfin-cache
   - hostPath:
       path: /srv/samba/tv
