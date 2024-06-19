@@ -4,12 +4,6 @@ metadata:
   annotations:
     bind-mount-options: /srv/containers/jellyfin/config:Z
     bind-mount-options/mediaPod-jellyfin: /srv/containers/jellyfin/config:Z
-    bind-mount-options/mediaPod-lidarr: /srv/containers/jellyfin/config:Z
-    bind-mount-options/mediaPod-prowlarr: /srv/containers/jellyfin/config:Z
-    bind-mount-options/mediaPod-radarr: /srv/containers/jellyfin/config:Z
-    bind-mount-options/mediaPod-readarr: /srv/containers/jellyfin/config:Z
-    bind-mount-options/mediaPod-sabnzbd: /srv/containers/jellyfin/config:Z
-    bind-mount-options/mediaPod-sonarr: /srv/containers/jellyfin/config:Z
     io.containers.autoupdate/mediaPod-jellyfin: image
     io.containers.autoupdate/mediaPod-lidarr: image
     io.containers.autoupdate/mediaPod-prowlarr: image
@@ -55,6 +49,10 @@ spec:
       name: jellyfin-cache
     - mountPath: /config
       name: jellyfin-config
+    devices:
+    - /dev/dri/renderD128:/dev/dri/renderD128 #Added access to RPI4 video hardware for transcoding
+    - /dev/dri/card0:/dev/dri/card0 #Added access to RPI4 video hardware for transcoding
+    - /dev/dri/card1:/dev/dri/card1 #Added access to RPI4 video hardware for transcoding
   - env:
     - name: PUID
       value: "1001"
