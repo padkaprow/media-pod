@@ -49,10 +49,6 @@ spec:
       name: jellyfin-cache
     - mountPath: /config
       name: jellyfin-config
-    devices:
-    - /dev/dri/renderD128:/dev/dri/renderD128 #Added access to RPI4 video hardware for transcoding
-    - /dev/dri/card0:/dev/dri/card0 #Added access to RPI4 video hardware for transcoding
-    - /dev/dri/card1:/dev/dri/card1 #Added access to RPI4 video hardware for transcoding
   - env:
     - name: PUID
       value: "1001"
