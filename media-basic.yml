@@ -157,10 +157,6 @@ spec:
       type: Directory
     name: sabnzbd-config
   - hostPath:
-      path: /srv/containers/lidarr/config
-      type: Directory
-    name: lidarr-config
-  - hostPath:
       path: /srv/containers/prowlarr/config
       type: Directory
     name: prowlarr-config
@@ -168,10 +164,6 @@ spec:
       path: /srv/containers/radarr/config
       type: Directory
     name: radarr-config
-  - hostPath:
-      path: /srv/containers/readarr/config
-      type: Directory
-    name: readarr-config
   - hostPath:
       path: /srv/containers/sonarr/config
       type: Directory
