@@ -3,21 +3,21 @@ kind: Pod
 metadata: 
   annotations:
     bind-mount-options: /srv/containers/jellyfin/config:Z
-    bind-mount-options/mediaPod-jellyfin: /srv/containers/jellyfin/config:Z
-    io.containers.autoupdate/mediaPod-jellyfin: image
-    io.containers.autoupdate/mediaPod-sabnzbd: image
-    io.containers.autoupdate/mediaPod-prowlarr: image
-    io.containers.autoupdate/mediaPod-radarr: image
-    io.containers.autoupdate/mediaPod-sonarr: image
-    io.podman.annotations.kube.health.check/mediaPod-jellyfin: "true"
-    io.podman.annotations.kube.health.check/mediaPod-sabnzbd: "true"
-    io.podman.annotations.kube.health.check/mediaPod-prowlarr: "true"
-    io.podman.annotations.kube.health.check/mediaPod-radarr: "true"
-    io.podman.annotations.kube.health.check/mediaPod-sonarr: "true"
+    bind-mount-options/media-pod-jellyfin: /srv/containers/jellyfin/config:Z
+    io.containers.autoupdate/media-pod-jellyfin: image
+    io.containers.autoupdate/media-pod-sabnzbd: image
+    io.containers.autoupdate/media-pod-prowlarr: image
+    io.containers.autoupdate/media-pod-radarr: image
+    io.containers.autoupdate/media-pod-sonarr: image
+    io.podman.annotations.kube.health.check/media-pod-jellyfin: "true"
+    io.podman.annotations.kube.health.check/media-pod-sabnzbd: "true"
+    io.podman.annotations.kube.health.check/media-pod-prowlarr: "true"
+    io.podman.annotations.kube.health.check/media-pod-radarr: "true"
+    io.podman.annotations.kube.health.check/media-pod-sonarr: "true"
   creationTimestamp: "2024-07-13T01:25:16Z"
   labels:
-    app: mediaPod
-  name: mediaPod
+    app: media-pod
+  name: media-pod
 spec:
   containers:
   - env:
@@ -38,11 +38,14 @@ spec:
     stdin: true
     tty: true
     volumeMounts:
-    - mountPath: /media
-      name: samba-root
+    - mountPath: /sdcard
+      name: sdcard
       readOnly: true
     - mountPath: /redbook
-      name: samba-redbook
+      name: redbook
+      readOnly: true
+    - mountPath: /m2
+      name: m2
       readOnly: true
     - mountPath: /cache
       name: jellyfin-cache
@@ -114,10 +117,16 @@ spec:
     volumeMounts:
     - mountPath: /config
       name: sonarr-config
-    - mountPath: /tv
-      name: samba-tv
     - mountPath: /downloads
       name: sabnzbd-downloads
+    - mountPath: /sdcard
+      name: sdcard
+      readOnly: true
+    - mountPath: /redbook
+      name: redbook
+      readOnly: true
+    - mountPath: /m2
+      name: m2
   - env:
     - name: PUID
       value: "1001"
@@ -138,10 +147,16 @@ spec:
     volumeMounts:
     - mountPath: /config
       name: radarr-config
-    - mountPath: /movies
-      name: samba-movies
     - mountPath: /downloads
       name: sabnzbd-downloads
+    - mountPath: /sdcard
+      name: sdcard
+      readOnly: true
+    - mountPath: /redbook
+      name: redbook
+      readOnly: true
+    - mountPath: /m2
+      name: m2
   volumes:
   - hostPath:
       path: /srv/containers/sabnzbd/jobs
@@ -180,26 +195,14 @@ spec:
       type: DirectoryOrCreate
     name: jellyfin-cache
   - hostPath:
-      path: /srv/samba/tv
+      path: /mnt/m2
       type: Directory
-    name: samba-tv
+    name: m2
   - hostPath:
-      path: /srv/samba/movies
+      path: /mnt/sd
       type: Directory
-    name: samba-movies
+    name: sdcard
   - hostPath:
-      path: /srv/samba/music
+      path: /mnt/redbook
       type: Directory
-    name: samba-music
-  - hostPath:
-      path: /srv/samba/books
-      type: Directory
-    name: samba-books
-  - hostPath:
-      path: /srv/samba
-      type: Directory
-    name: samba-root
-  - hostPath:
-      path: /srv/samba/redbook
-      type: Directory
-    name: samba-redbook
+    name: redbook
