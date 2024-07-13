@@ -160,15 +160,15 @@ spec:
   volumes:
   - hostPath:
       path: /srv/containers/sabnzbd/jobs
-      type: Directory
+      type: DirectoryOrCreate
     name: sabnzbd-jobs
   - hostPath:
       path: /srv/containers/sabnzbd/incomplete-downloads
-      type: Directory
+      type: DirectoryOrCreate
     name: sabnzbd-incomplete
   - hostPath:
       path: /srv/containers/sabnzbd/downloads
-      type: Directory
+      type: DirectoryOrCreate
     name: sabnzbd-downloads
   - hostPath:
       path: /srv/containers/sabnzbd/config
