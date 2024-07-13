@@ -41,6 +41,9 @@ spec:
     - mountPath: /media
       name: samba-root
       readOnly: true
+    - mountPath: /redbook
+      name: samba-redbook
+      readOnly: true
     - mountPath: /cache
       name: jellyfin-cache
     - mountPath: /config
@@ -196,3 +199,7 @@ spec:
       path: /srv/samba
       type: Directory
     name: samba-root
+  - hostPath:
+      path: /srv/samba/redbook
+      type: Directory
+    name: samba-redbook
