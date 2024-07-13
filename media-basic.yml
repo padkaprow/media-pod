@@ -172,19 +172,19 @@ spec:
     name: sabnzbd-downloads
   - hostPath:
       path: /srv/containers/sabnzbd/config
-      type: Directory
+      type: DirectoryOrCreate
     name: sabnzbd-config
   - hostPath:
       path: /srv/containers/prowlarr/config
-      type: Directory
+      type: DirectoryOrCreate
     name: prowlarr-config
   - hostPath:
       path: /srv/containers/radarr/config
-      type: Directory
+      type: DirectoryOrCreate
     name: radarr-config
   - hostPath:
       path: /srv/containers/sonarr/config
-      type: Directory
+      type: DirectoryOrCreate
     name: sonarr-config
   - hostPath:
       path: /srv/containers/jellyfin/config
