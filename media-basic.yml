@@ -121,10 +121,8 @@ spec:
       name: sabnzbd-downloads
     - mountPath: /sdcard
       name: sdcard
-      readOnly: true
     - mountPath: /redbook
       name: redbook
-      readOnly: true
     - mountPath: /m2
       name: m2
   - env:
@@ -151,10 +149,8 @@ spec:
       name: sabnzbd-downloads
     - mountPath: /sdcard
       name: sdcard
-      readOnly: true
     - mountPath: /redbook
       name: redbook
-      readOnly: true
     - mountPath: /m2
       name: m2
   volumes:
