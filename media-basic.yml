@@ -36,7 +36,7 @@ spec:
     image: docker.io/jellyfin/jellyfin:latest
     name: jellyfin
     group_add:
-      - "993" #getent group render | cut -d: -f3
+      - render #getent group render | cut -d: -f3
     ports:
     - containerPort: 8096 #HTTP Traffic
       hostPort: 8096
