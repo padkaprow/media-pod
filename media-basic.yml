@@ -14,7 +14,7 @@ metadata:
     io.podman.annotations.kube.health.check/media-pod-prowlarr: "true"
     io.podman.annotations.kube.health.check/media-pod-radarr: "true"
     io.podman.annotations.kube.health.check/media-pod-sonarr: "true"
-  creationTimestamp: "2024-07-13T01:25:16Z"
+  creationTimestamp: "2024-07-20T19:29:11Z"
   labels:
     app: media-pod
   name: media-pod
@@ -62,7 +62,8 @@ spec:
     - mountPath: /config
       name: jellyfin-config
     devices:
-    - /dev/dri:/dev/dri
+    - /dev/dri/renderD128:/dev/dri/renderD128 #GPU
+    - /dev/dri/card0:/dev/dri/card0 #GPU
   - env:
     - name: PUID
       value: "1001"
