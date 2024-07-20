@@ -63,9 +63,8 @@ spec:
       name: jellyfin-cache
     - mountPath: /config
       name: jellyfin-config
-    devices:
-    - /dev/dri/renderD128:/dev/dri/renderD128 #GPU
-    - /dev/dri/card0:/dev/dri/card0 #GPU
+    - mountPath: /dev/dri/renderD128
+      name: render-device
   - env:
     - name: PUID
       value: "1001"
@@ -217,3 +216,9 @@ spec:
       path: /mnt/redbook
       type: Directory
     name: redbook
+  - hostPath:
+      path: "/dev/dri/renderD128"
+      type: Directory
+    name: "render-device"
+
+       
