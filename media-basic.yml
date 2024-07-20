@@ -51,6 +51,8 @@ spec:
       name: jellyfin-cache
     - mountPath: /config
       name: jellyfin-config
+    devices:
+    - /dev/dri/renderD128:/dev/dri/renderD128 #GPU
   - env:
     - name: PUID
       value: "1001"
