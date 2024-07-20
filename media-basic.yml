@@ -23,6 +23,16 @@ spec:
   - env:
     - name: TERM
       value: xterm
+    - name: PUID
+      value: "1001"
+    - name: PGID
+      value: "1001"
+    - name: TZ
+      value: America/New_York
+    - name: LANG
+      value: en_US.UTF-8
+    - name: LANGUAGE
+      value: en_US.UTF-8
     image: docker.io/jellyfin/jellyfin:latest
     name: jellyfin
     ports:
