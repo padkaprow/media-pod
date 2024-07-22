@@ -3,21 +3,21 @@ kind: Pod
 metadata: 
   annotations:
     bind-mount-options: /srv/containers/jellyfin/config:Z
-    bind-mount-options/media-pod-jellyfin: /srv/containers/jellyfin/config:Z
-    io.containers.autoupdate/media-pod-jellyfin: image
-    io.containers.autoupdate/media-pod-sabnzbd: image
-    io.containers.autoupdate/media-pod-prowlarr: image
-    io.containers.autoupdate/media-pod-radarr: image
-    io.containers.autoupdate/media-pod-sonarr: image
-    io.podman.annotations.kube.health.check/media-pod-jellyfin: "true"
-    io.podman.annotations.kube.health.check/media-pod-sabnzbd: "true"
-    io.podman.annotations.kube.health.check/media-pod-prowlarr: "true"
-    io.podman.annotations.kube.health.check/media-pod-radarr: "true"
-    io.podman.annotations.kube.health.check/media-pod-sonarr: "true"
+    bind-mount-options/media-jellyfin: /srv/containers/jellyfin/config:Z
+    io.containers.autoupdate/media-jellyfin: image
+    io.containers.autoupdate/media-sabnzbd: image
+    io.containers.autoupdate/media-prowlarr: image
+    io.containers.autoupdate/media-radarr: image
+    io.containers.autoupdate/media-sonarr: image
+    io.podman.annotations.kube.health.check/media-jellyfin: "true"
+    io.podman.annotations.kube.health.check/media-sabnzbd: "true"
+    io.podman.annotations.kube.health.check/media-prowlarr: "true"
+    io.podman.annotations.kube.health.check/media-radarr: "true"
+    io.podman.annotations.kube.health.check/media-sonarr: "true"
   creationTimestamp: "2024-07-20T19:29:11Z"
   labels:
-    app: media-pod
-  name: media-pod
+    app: media
+  name: media
 spec:
   containers:
   - env:
