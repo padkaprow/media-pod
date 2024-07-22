@@ -23,10 +23,6 @@ spec:
   - env:
     - name: TERM
       value: xterm
-    - name: PUID
-      value: "1001"
-    - name: PGID
-      value: "1001"
     - name: TZ
       value: America/New_York
     - name: LANG
@@ -35,6 +31,7 @@ spec:
       value: en_US.UTF-8
     image: docker.io/jellyfin/jellyfin:latest
     name: jellyfin
+    user: 101000:1010000 
     group_add:
       - render #getent group render | cut -d: -f3
     ports:
