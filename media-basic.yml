@@ -50,13 +50,10 @@ spec:
     volumeMounts:
     - mountPath: /sdcard
       name: sdcard
-      readOnly: true
     - mountPath: /redbook
       name: redbook
-      readOnly: true
     - mountPath: /m2
       name: m2
-      readOnly: true
     - mountPath: /cache
       name: jellyfin-cache
     - mountPath: /config
@@ -224,4 +221,3 @@ spec:
       path: "/dev/dri/card0"
       type: Directory
     name: "render-card"
-       
