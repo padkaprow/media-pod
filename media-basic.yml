@@ -65,6 +65,8 @@ spec:
       name: jellyfin-config
     - mountPath: /dev/dri/renderD128
       name: render-device
+    - mountPath: /dev/dri/card0
+      name: render-card
   - env:
     - name: PUID
       value: "1001"
@@ -220,5 +222,8 @@ spec:
       path: "/dev/dri/renderD128"
       type: Directory
     name: "render-device"
-
+  - hostPath:
+      path: "/dev/dri/card0"
+      type: Directory
+    name: "render-card"
        
