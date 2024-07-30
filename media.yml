@@ -10,15 +10,15 @@ metadata:
     io.containers.autoupdate/media-readarr: image
     io.containers.autoupdate/media-sonarr: image
     io.containers.autoupdate/media-heimdall: image
-    io.podman.annotations.kube.health.check/media-jellyfin: "true"
-    io.podman.annouiop34.tations.kube.health.check/media-sabnzbd: "true"
-    io.podman.annotations.kube.health.check/media-prowlarr: "true"
-    io.podman.annotations.kube.health.check/media-lidarr: "true"
-    io.podman.annotations.kube.health.check/media-radarr: "true"
-    io.podman.annotations.kube.health.check/media-readarr: "true"
-    io.podman.annotations.kube.health.check/media-sonarr: "true"
-    io.podman.annotations.kube.health.check/media-heimdall: "true"
-  creationTimestamp: "2024-07-30T16:08:08Z"
+    io.podman.annotations.kube.health.check/media-jellyfin: 'true'
+    io.podman.annouiop34.tations.kube.health.check/media-sabnzbd: 'true'
+    io.podman.annotations.kube.health.check/media-prowlarr: 'true'
+    io.podman.annotations.kube.health.check/media-lidarr: 'true'
+    io.podman.annotations.kube.health.check/media-radarr: 'true'
+    io.podman.annotations.kube.health.check/media-readarr: 'true'
+    io.podman.annotations.kube.health.check/media-sonarr: 'true'
+    io.podman.annotations.kube.health.check/media-heimdall: 'true'
+  creationTimestamp: '2024-07-30T16:08:08Z'
   labels:
     app: media
   name: media
@@ -28,27 +28,27 @@ spec:
     - name: TERM
       value: xterm
     - name: PUID
-      value: "1001"
+      value: '1001'
     - name: PGID
-      value: "1001"
+      value: '1001'
     - name: TZ
       value: America/New_York
     - name: LANG
       value: en_US.UTF-8
     - name: LANGUAGE
       value: en_US.UTF-8
-    image: docker.io/jellyfin/jellyfin:latest
+    image: 'docker.io/jellyfin/jellyfin:latest'
     name: jellyfin
     group_add:
-    - render #getent group render | cut -d: -f3
+    - render
     ports:
-    - containerPort: 8096 #HTTP Traffic
+    - containerPort: 8096
       hostPort: 8096
-    - containerPort: 8920 #HTTPS Traffic
+    - containerPort: 8920
       hostPort: 8920
-    - containerPort: 1900 #Service Discovery
+    - containerPort: 1900
       hostPort: 1900
-    - containerPort: 7359 #Client Discovery
+    - containerPort: 7359
       hostPort: 7359
     tty: true
     volumeMounts:
@@ -68,16 +68,16 @@ spec:
       name: render-card
   - env:
     - name: PUID
-      value: "1001"
+      value: '1001'
     - name: PGID
-      value: "1001"
+      value: '1001'
     - name: TZ
       value: America/New_York
     - name: LANG
       value: en_US.UTF-8
     - name: LANGUAGE
       value: en_US.UTF-8
-    image: docker.io/linuxserver/sabnzbd:latest
+    image: 'docker.io/linuxserver/sabnzbd:latest'
     name: sabnzbd
     ports:
     - containerPort: 8080
@@ -93,16 +93,16 @@ spec:
       name: sabnzbd-config
   - env:
     - name: PUID
-      value: "1001"
+      value: '1001'
     - name: PGID
-      value: "1001"
+      value: '1001'
     - name: TZ
       value: America/New_York
     - name: LANG
       value: en_US.UTF-8
     - name: LANGUAGE
       value: en_US.UTF-8
-    image: docker.io/linuxserver/prowlarr:latest
+    image: 'docker.io/linuxserver/prowlarr:latest'
     name: prowlarr
     ports:
     - containerPort: 9696
@@ -112,16 +112,16 @@ spec:
       name: prowlarr-config
   - env:
     - name: PUID
-      value: "1001"
+      value: '1001'
     - name: PGID
-      value: "1001"
+      value: '1001'
     - name: TZ
       value: America/New_York
     - name: LANG
       value: en_US.UTF-8
     - name: LANGUAGE
       value: en_US.UTF-8
-    image: docker.io/linuxserver/lidarr:latest
+    image: 'docker.io/linuxserver/lidarr:latest'
     name: lidarr
     ports:
     - containerPort: 8686
@@ -136,16 +136,16 @@ spec:
       name: sabnzbd-downloads
   - env:
     - name: PUID
-      value: "1001"
+      value: '1001'
     - name: PGID
-      value: "1001"
+      value: '1001'
     - name: TZ
       value: America/New_York
     - name: LANG
       value: en_US.UTF-8
     - name: LANGUAGE
       value: en_US.UTF-8
-    image: docker.io/linuxserver/sonarr:latest
+    image: 'docker.io/linuxserver/sonarr:latest'
     name: sonarr
     ports:
     - containerPort: 8989
@@ -163,16 +163,16 @@ spec:
       name: m2
   - env:
     - name: PUID
-      value: "1001"
+      value: '1001'
     - name: PGID
-      value: "1001"
+      value: '1001'
     - name: TZ
       value: America/New_York
     - name: LANG
       value: en_US.UTF-8
     - name: LANGUAGE
       value: en_US.UTF-8
-    image: docker.io/linuxserver/radarr:latest
+    image: 'docker.io/linuxserver/radarr:latest'
     name: radarr
     ports:
     - containerPort: 7878
@@ -190,16 +190,16 @@ spec:
       name: m2
   - env:
     - name: PUID
-      value: "1001"
+      value: '1001'
     - name: PGID
-      value: "1001"
+      value: '1001'
     - name: TZ
       value: America/New_York
     - name: LANG
       value: en_US.UTF-8
     - name: LANGUAGE
       value: en_US.UTF-8
-    image: docker.io/linuxserver/readarr:develop
+    image: 'docker.io/linuxserver/readarr:develop'
     name: readarr
     ports:
     - containerPort: 8787
@@ -213,16 +213,16 @@ spec:
       name: sabnzbd-downloads
   - env:
     - name: PUID
-      value: "1001"
+      value: '1001'
     - name: PGID
-      value: "1001"
+      value: '1001'
     - name: TZ
       value: America/New_York
     - name: LANG
       value: en_US.UTF-8
     - name: LANGUAGE
       value: en_US.UTF-8
-    image: lscr.io/linuxserver/heimdall:latest
+    image: 'lscr.io/linuxserver/heimdall:latest'
     name: heimdall
     ports:
     - containerPort: 8081
@@ -232,7 +232,7 @@ spec:
       name: heimdall-config
   volumes:
   - hostPath:
-    - hostPath:
+    - hostPath: null
       path: /mnt/m2
       type: Directory
     name: m2
@@ -293,13 +293,13 @@ spec:
       type: Directory
     name: heimdall-config
   - hostPath:
-      path: "/dev/dri/renderD128"
+      path: /dev/dri/renderD128
       type: Directory
-    name: "render-device"
+    name: render-device
   - hostPath:
-      path: "/dev/dri/card0"
+      path: /dev/dri/card0
       type: Directory
-    name: "render-card"
+    name: render-card
   - hostPath:
       path: /srv/containers/jellyfin/config
       type: Directory
