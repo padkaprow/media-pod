@@ -245,6 +245,7 @@ spec:
       path: /mnt/redbook
       type: Directory
     name: redbook
+  - hostPath:
       path: /mnt/sd/music
       type: DirectoryOrCreate
     name: samba-music
