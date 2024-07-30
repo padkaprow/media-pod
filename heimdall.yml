@@ -1,28 +1,25 @@
-# Save the output of this file and use kubectl create -f to import
-# it into Kubernetes.
-#
-# Created with podman-4.9.3
-
-# NOTE: If you generated this yaml from an unprivileged and rootless podman container on an SELinux
-# enabled system, check the podman generate kube man page for steps to follow to ensure that your pod/container
-# has the right permissions to access the volumes added.
----
 apiVersion: v1
 kind: Pod
 metadata:
-  creationTimestamp: "2024-07-30T16:00:01Z"
+  creationTimestamp: "2024-07-30T16:08:08Z"
   labels:
     app: heimdall-pod
   name: heimdall-pod
 spec:
   containers:
   - env:
-    - name: PGID
-      value: "1000"
+    - name: TERM
+      value: xterm
     - name: PUID
-      value: "1000"
+      value: "1001"
+    - name: PGID
+      value: "1001"
     - name: TZ
-      value: Etc/UTC
+      value: America/New_York
+    - name: LANG
+      value: en_US.UTF-8
+    - name: LANGUAGE
+      value: en_US.UTF-8-8
     image: lscr.io/linuxserver/heimdall:latest
     name: heimdall
     ports:
@@ -32,9 +29,9 @@ spec:
       hostPort: 8081
     volumeMounts:
     - mountPath: /config
-      name: srv-containers-heimdall-config-host-0
+      name: heimdall-config
   volumes:
   - hostPath:
       path: /srv/containers/heimdall/config
-      type: Directory
-    name: srv-containers-heimdall-config-host-0
+      type: DirectoryOrCreate
+    name: heimdall-config
