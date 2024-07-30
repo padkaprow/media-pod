@@ -247,51 +247,51 @@ spec:
     name: redbook
   - hostPath:
       path: /mnt/sd/music
-      type: DirectoryOrCreate
+      type: Directory
     name: samba-music
   - hostPath:
       path: /mnt/sd/books
-      type: DirectoryOrCreate
+      type: Directory
     name: samba-books
   - hostPath:
       path: /srv/containers/sabnzbd/config
-      type: DirectoryOrCreate
+      type: Directory
     name: sabnzbd-config
   - hostPath:
       path: /srv/containers/sabnzbd/jobs
-      type: DirectoryOrCreate
+      type: Directory
     name: sabnzbd-jobs
   - hostPath:
       path: /srv/containers/sabnzbd/incomplete-downloads
-      type: DirectoryOrCreate
+      type: Directory
     name: sabnzbd-incomplete
   - hostPath:
       path: /srv/containers/sabnzbd/downloads
-      type: DirectoryOrCreate
+      type: Directory
     name: sabnzbd-downloads
   - hostPath:
       path: /srv/containers/prowlarr/config
-      type: DirectoryOrCreate
+      type: Directory
     name: prowlarr-config
   - hostPath:
       path: /srv/containers/lidarr/config
-      type: DirectoryOrCreate
+      type: Directory
     name: lidarr-config
   - hostPath:
       path: /srv/containers/radarr/config
-      type: DirectoryOrCreate
+      type: Directory
     name: radarr-config
   - hostPath:
       path: /srv/containers/readarr/config
-      type: DirectoryOrCreate
+      type: Directory
     name: readarr-config
   - hostPath:
       path: /srv/containers/sonarr/config
-      type: DirectoryOrCreate
+      type: Directory
     name: sonarr-config
   - hostPath:
       path: /srv/containers/heimdall/config
-      type: DirectoryOrCreate
+      type: Directory
     name: heimdall-config
   - hostPath:
       path: "/dev/dri/renderD128"
@@ -303,10 +303,10 @@ spec:
     name: "render-card"
   - hostPath:
       path: /srv/containers/jellyfin/config
-      type: DirectoryOrCreate
+      type: Directory
     name: jellyfin-config
   - hostPath:
       path: /srv/containers/jellyfin/cache
-      type: DirectoryOrCreate
+      type: Directory
     name: jellyfin-cache
 
