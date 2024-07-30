@@ -1,6 +1,6 @@
 apiVersion: v1
 kind: Pod
-metadata: 
+metadata:
   annotations:
     io.containers.autoupdate/media-jellyfin: image
     io.containers.autoupdate/media-sabnzbd: image
@@ -34,7 +34,7 @@ spec:
     image: docker.io/jellyfin/jellyfin:latest
     name: jellyfin
     group_add:
-      - render #getent group render | cut -d: -f3
+    - render #getent group render | cut -d: -f3
     ports:
     - containerPort: 8096 #HTTP Traffic
       hostPort: 8096
@@ -78,7 +78,7 @@ spec:
     ports:
     - containerPort: 9696
       hostPort: 9696
-    restart: unless-stopped      
+    restart: unless-stopped
     volumeMounts:
     - mountPath: /config
       name: prowlarr-config
@@ -122,8 +122,8 @@ spec:
     image: docker.io/linuxserver/sonarr:latest
     name: sonarr
     ports:
-      - containerPort: 8989
-        hostPort: 8989
+    - containerPort: 8989
+      hostPort: 8989
     restart: unless-stopped
     volumeMounts:
     - mountPath: /config

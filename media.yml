@@ -1,57 +1,32 @@
 apiVersion: v1
 kind: Pod
-metadata: 
+metadata:
   annotations:
-    bind-mount-options: /srv/containers/jellyfin/config:Z
-    bind-mount-options/mediaPod-jellyfin: /srv/containers/jellyfin/config:Z
-    io.containers.autoupdate/mediaPod-jellyfin: image
-    io.containers.autoupdate/mediaPod-lidarr: image
-    io.containers.autoupdate/mediaPod-prowlarr: image
-    io.containers.autoupdate/mediaPod-radarr: image
-    io.containers.autoupdate/mediaPod-readarr: image
-    io.containers.autoupdate/mediaPod-sabnzbd: image
-    io.containers.autoupdate/mediaPod-sonarr: image
-    io.podman.annotations.kube.health.check/mediaPod-jellyfin: "true"
-    io.podman.annotations.kube.health.check/mediaPod-lidarr: "true"
-    io.podman.annotations.kube.health.check/mediaPod-prowlarr: "true"
-    io.podman.annotations.kube.health.check/mediaPod-radarr: "true"
-    io.podman.annotations.kube.health.check/mediaPod-readarr: "true"
-    io.podman.annotations.kube.health.check/mediaPod-sabnzbd: "true"
-    io.podman.annotations.kube.health.check/mediaPod-sonarr: "true"
-  creationTimestamp: "2024-06-16T15:55:45Z"
+    io.containers.autoupdate/media-jellyfin: image
+    io.containers.autoupdate/media-sabnzbd: image
+    io.containers.autoupdate/media-prowlarr: image
+    io.containers.autoupdate/media-lidarr: image
+    io.containers.autoupdate/media-radarr: image
+    io.containers.autoupdate/media-readarr: image
+    io.containers.autoupdate/media-sonarr: image
+    io.containers.autoupdate/media-heimdall: image
+    io.podman.annotations.kube.health.check/media-jellyfin: "true"
+    io.podman.annouiop34.tations.kube.health.check/media-sabnzbd: "true"
+    io.podman.annotations.kube.health.check/media-prowlarr: "true"
+    io.podman.annotations.kube.health.check/media-lidarr: "true"
+    io.podman.annotations.kube.health.check/media-radarr: "true"
+    io.podman.annotations.kube.health.check/media-readarr: "true"
+    io.podman.annotations.kube.health.check/media-sonarr: "true"
+    io.podman.annotations.kube.health.check/media-heimdall: "true"
+  creationTimestamp: "2024-07-30T16:08:08Z"
   labels:
-    app: mediaPod
-  name: mediaPod
+    app: media
+  name: media
 spec:
   containers:
   - env:
     - name: TERM
       value: xterm
-    image: docker.io/jellyfin/jellyfin:latest
-    name: jellyfin
-    ports:
-    - containerPort: 8096 #HTTP Traffic
-      hostPort: 8096
-    - containerPort: 8920 #HTTPS Traffic
-      hostPort: 8920
-    - containerPort: 1900 #Service Discovery
-      hostPort: 1900
-    - containerPort: 7359 #Client Discovery
-      hostPort: 7359
-    restart: unless-stopped
-    stdin: true
-    tty: true
-    volumeMounts:
-    - mountPath: /media
-      name: samba-root
-      readOnly: true
-    - mountPath: /cache
-      name: jellyfin-cache
-    - mountPath: /config
-      name: jellyfin-config
-    devices:
-    - /dev/dri/renderD128:/dev/dri/renderD128 #GPU
-  - env:
     - name: PUID
       value: "1001"
     - name: PGID
@@ -62,15 +37,35 @@ spec:
       value: en_US.UTF-8
     - name: LANGUAGE
       value: en_US.UTF-8
-    image: docker.io/linuxserver/prowlarr:latest
-    name: prowlarr
+    image: docker.io/jellyfin/jellyfin:latest
+    name: jellyfin
+    group_add:
+    - render #getent group render | cut -d: -f3
     ports:
-    - containerPort: 9696
-      hostPort: 9696
-    restart: unless-stopped      
+    - containerPort: 8096 #HTTP Traffic
+      hostPort: 8096
+    - containerPort: 8920 #HTTPS Traffic
+      hostPort: 8920
+    - containerPort: 1900 #Service Discovery
+      hostPort: 1900
+    - containerPort: 7359 #Client Discovery
+      hostPort: 7359
+    tty: true
     volumeMounts:
+    - mountPath: /sdcard
+      name: sdcard
+    - mountPath: /redbook
+      name: redbook
+    - mountPath: /m2
+      name: m2
+    - mountPath: /cache
+      name: jellyfin-cache
     - mountPath: /config
-      name: prowlarr-config
+      name: jellyfin-config
+    - mountPath: /dev/dri/renderD128
+      name: render-device
+    - mountPath: /dev/dri/card0
+      name: render-card
   - env:
     - name: PUID
       value: "1001"
@@ -87,7 +82,6 @@ spec:
     ports:
     - containerPort: 8080
       hostPort: 8080
-    restart: unless-stopped
     volumeMounts:
     - mountPath: /downloads
       name: sabnzbd-downloads
@@ -108,43 +102,14 @@ spec:
       value: en_US.UTF-8
     - name: LANGUAGE
       value: en_US.UTF-8
-    image: docker.io/linuxserver/sonarr:latest
-    name: sonarr
+    image: docker.io/linuxserver/prowlarr:latest
+    name: prowlarr
     ports:
-      - containerPort: 8989
-        hostPort: 8989
-    restart: unless-stopped
+    - containerPort: 9696
+      hostPort: 9696
     volumeMounts:
     - mountPath: /config
-      name: sonarr-config
-    - mountPath: /tv
-      name: samba-tv
-    - mountPath: /downloads
-      name: sabnzbd-downloads
-  - env:
-    - name: PUID
-      value: "1001"
-    - name: PGID
-      value: "1001"
-    - name: TZ
-      value: America/New_York
-    - name: LANG
-      value: en_US.UTF-8
-    - name: LANGUAGE
-      value: en_US.UTF-8
-    image: docker.io/linuxserver/radarr:latest
-    name: radarr
-    ports:
-    - containerPort: 7878
-      hostPort: 7878
-    restart: unless-stopped
-    volumeMounts:
-    - mountPath: /config
-      name: radarr-config
-    - mountPath: /movies
-      name: samba-movies
-    - mountPath: /downloads
-      name: sabnzbd-downloads
+      name: prowlarr-config
   - env:
     - name: PUID
       value: "1001"
@@ -160,7 +125,7 @@ spec:
     name: lidarr
     ports:
     - containerPort: 8686
-      hostPort: 8686 
+      hostPort: 8686
     restart: unless-stopped
     volumeMounts:
     - mountPath: /config
@@ -180,12 +145,65 @@ spec:
       value: en_US.UTF-8
     - name: LANGUAGE
       value: en_US.UTF-8
+    image: docker.io/linuxserver/sonarr:latest
+    name: sonarr
+    ports:
+    - containerPort: 8989
+      hostPort: 8989
+    volumeMounts:
+    - mountPath: /config
+      name: sonarr-config
+    - mountPath: /downloads
+      name: sabnzbd-downloads
+    - mountPath: /sdcard
+      name: sdcard
+    - mountPath: /redbook
+      name: redbook
+    - mountPath: /m2
+      name: m2
+  - env:
+    - name: PUID
+      value: "1001"
+    - name: PGID
+      value: "1001"
+    - name: TZ
+      value: America/New_York
+    - name: LANG
+      value: en_US.UTF-8
+    - name: LANGUAGE
+      value: en_US.UTF-8
+    image: docker.io/linuxserver/radarr:latest
+    name: radarr
+    ports:
+    - containerPort: 7878
+      hostPort: 7878
+    volumeMounts:
+    - mountPath: /config
+      name: radarr-config
+    - mountPath: /downloads
+      name: sabnzbd-downloads
+    - mountPath: /sdcard
+      name: sdcard
+    - mountPath: /redbook
+      name: redbook
+    - mountPath: /m2
+      name: m2
+  - env:
+    - name: PUID
+      value: "1001"
+    - name: PGID
+      value: "1001"
+    - name: TZ
+      value: America/New_York
+    - name: LANG
+      value: en_US.UTF-8
+    - name: LANGUAGE
+      value: en_US.UTF-8
     image: docker.io/linuxserver/readarr:develop
     name: readarr
     ports:
     - containerPort: 8787
       hostPort: 8787
-    restart: unless-stopped
     volumeMounts:
     - mountPath: /config
       name: readarr-config
@@ -193,43 +211,95 @@ spec:
       name: samba-books
     - mountPath: /downloads
       name: sabnzbd-downloads
+  - env:
+    - name: PUID
+      value: "1001"
+    - name: PGID
+      value: "1001"
+    - name: TZ
+      value: America/New_York
+    - name: LANG
+      value: en_US.UTF-8
+    - name: LANGUAGE
+      value: en_US.UTF-8
+    image: lscr.io/linuxserver/heimdall:latest
+    name: heimdall
+    ports:
+    - containerPort: 8081
+      hostPort: 80
+    volumeMounts:
+    - mountPath: /config
+      name: heimdall-config
+  restartPolicy: Always
   volumes:
   - hostPath:
-      path: /srv/containers/sabnzbd/jobs
+    - hostPath:
+      path: /mnt/m2
       type: Directory
+    name: m2
+  - hostPath:
+      path: /mnt/sd
+      type: Directory
+    name: sdcard
+  - hostPath:
+      path: /mnt/redbook
+      type: Directory
+    name: redbook
+      path: /mnt/sd/music
+      type: DirectoryOrCreate
+    name: samba-music
+  - hostPath:
+      path: /mnt/sd/books
+      type: DirectoryOrCreate
+    name: samba-books
+  - hostPath:
+      path: /srv/containers/sabnzbd/config
+      type: DirectoryOrCreate
+    name: sabnzbd-config
+  - hostPath:
+      path: /srv/containers/sabnzbd/jobs
+      type: DirectoryOrCreate
     name: sabnzbd-jobs
   - hostPath:
       path: /srv/containers/sabnzbd/incomplete-downloads
-      type: Directory
+      type: DirectoryOrCreate
     name: sabnzbd-incomplete
   - hostPath:
       path: /srv/containers/sabnzbd/downloads
-      type: Directory
+      type: DirectoryOrCreate
     name: sabnzbd-downloads
   - hostPath:
-      path: /srv/containers/sabnzbd/config
-      type: Directory
-    name: sabnzbd-config
-  - hostPath:
-      path: /srv/containers/lidarr/config
-      type: Directory
-    name: lidarr-config
-  - hostPath:
       path: /srv/containers/prowlarr/config
-      type: Directory
+      type: DirectoryOrCreate
     name: prowlarr-config
   - hostPath:
+      path: /srv/containers/lidarr/config
+      type: DirectoryOrCreate
+    name: lidarr-config
+  - hostPath:
       path: /srv/containers/radarr/config
-      type: Directory
+      type: DirectoryOrCreate
     name: radarr-config
   - hostPath:
       path: /srv/containers/readarr/config
-      type: Directory
+      type: DirectoryOrCreate
     name: readarr-config
   - hostPath:
       path: /srv/containers/sonarr/config
-      type: Directory
+      type: DirectoryOrCreate
     name: sonarr-config
+  - hostPath:
+      path: /srv/containers/heimdall/config
+      type: DirectoryOrCreate
+    name: heimdall-config
+  - hostPath:
+      path: "/dev/dri/renderD128"
+      type: Directory
+    name: "render-device"
+  - hostPath:
+      path: "/dev/dri/card0"
+      type: Directory
+    name: "render-card"
   - hostPath:
       path: /srv/containers/jellyfin/config
       type: DirectoryOrCreate
@@ -238,23 +308,4 @@ spec:
       path: /srv/containers/jellyfin/cache
       type: DirectoryOrCreate
     name: jellyfin-cache
-  - hostPath:
-      path: /srv/samba/tv
-      type: Directory
-    name: samba-tv
-  - hostPath:
-      path: /srv/samba/movies
-      type: Directory
-    name: samba-movies
-  - hostPath:
-      path: /srv/samba/music
-      type: Directory
-    name: samba-music
-  - hostPath:
-      path: /srv/samba/books
-      type: Directory
-    name: samba-books
-  - hostPath:
-      path: /srv/samba
-      type: Directory
-    name: samba-root
+
