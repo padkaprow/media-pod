@@ -225,8 +225,8 @@ spec:
     image: 'lscr.io/linuxserver/heimdall:latest'
     name: heimdall
     ports:
-    - containerPort: 8081
-      hostPort: 80
+    - containerPort: 80
+      hostPort: 8081
     volumeMounts:
     - mountPath: /config
       name: heimdall-config
