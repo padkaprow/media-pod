@@ -11,7 +11,7 @@ metadata:
     io.containers.autoupdate/media-sonarr: image
     io.containers.autoupdate/media-heimdall: image
     io.podman.annotations.kube.health.check/media-jellyfin: 'true'
-    io.podman.annouiop34.tations.kube.health.check/media-sabnzbd: 'true'
+    io.podman.annotations.kube.health.check/media-sabnzbd: 'true'
     io.podman.annotations.kube.health.check/media-prowlarr: 'true'
     io.podman.annotations.kube.health.check/media-lidarr: 'true'
     io.podman.annotations.kube.health.check/media-radarr: 'true'
@@ -52,20 +52,20 @@ spec:
       hostPort: 7359
     tty: true
     volumeMounts:
-    - mountPath: /sdcard
-      name: sdcard
-    - mountPath: /redbook
-      name: redbook
     - mountPath: /m2
       name: m2
-    - mountPath: /cache
-      name: jellyfin-cache
-    - mountPath: /config
-      name: jellyfin-config
+    - mountPath: /redbook
+      name: redbook
+    - mountPath: /sdcard
+      name: sdcard
     - mountPath: /dev/dri/renderD128
       name: render-device
     - mountPath: /dev/dri/card0
       name: render-card
+    - mountPath: /cache
+      name: jellyfin-cache
+    - mountPath: /config
+      name: jellyfin-config
   - env:
     - name: PUID
       value: '1001'
@@ -151,16 +151,16 @@ spec:
     - containerPort: 8989
       hostPort: 8989
     volumeMounts:
-    - mountPath: /config
-      name: sonarr-config
-    - mountPath: /downloads
-      name: sabnzbd-downloads
-    - mountPath: /sdcard
-      name: sdcard
-    - mountPath: /redbook
-      name: redbook
     - mountPath: /m2
       name: m2
+    - mountPath: /redbook
+      name: redbook
+    - mountPath: /sdcard
+      name: sdcard
+    - mountPath: /downloads
+      name: sabnzbd-downloads
+    - mountPath: /config
+      name: sonarr-config
   - env:
     - name: PUID
       value: '1001'
@@ -178,16 +178,16 @@ spec:
     - containerPort: 7878
       hostPort: 7878
     volumeMounts:
-    - mountPath: /config
-      name: radarr-config
-    - mountPath: /downloads
-      name: sabnzbd-downloads
-    - mountPath: /sdcard
-      name: sdcard
-    - mountPath: /redbook
-      name: redbook
     - mountPath: /m2
       name: m2
+    - mountPath: /redbook
+      name: redbook
+    - mountPath: /sdcard
+      name: sdcard
+    - mountPath: /downloads
+      name: sabnzbd-downloads
+    - mountPath: /config
+      name: radarr-config
   - env:
     - name: PUID
       value: '1001'
@@ -205,12 +205,12 @@ spec:
     - containerPort: 8787
       hostPort: 8787
     volumeMounts:
-    - mountPath: /config
-      name: readarr-config
     - mountPath: /books
       name: samba-books
     - mountPath: /downloads
       name: sabnzbd-downloads
+    - mountPath: /config
+      name: readarr-config
   - env:
     - name: PUID
       value: '1001'
@@ -232,18 +232,17 @@ spec:
       name: heimdall-config
   volumes:
   - hostPath:
-    - hostPath: null
       path: /mnt/m2
       type: Directory
     name: m2
   - hostPath:
-      path: /mnt/sd
-      type: Directory
-    name: sdcard
-  - hostPath:
       path: /mnt/redbook
       type: Directory
     name: redbook
+  - hostPath:
+      path: /mnt/sd
+      type: Directory
+    name: sdcard
   - hostPath:
       path: /mnt/sd/music
       type: Directory
