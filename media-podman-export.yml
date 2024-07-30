@@ -6,72 +6,150 @@ apiVersion: v1
 kind: Pod
 metadata:
   annotations:
+    io.containers.autoupdate/media-heimdall/media-heimdall: image
+    io.containers.autoupdate/media-heimdall/media-jellyfin: image
+    io.containers.autoupdate/media-heimdall/media-lidarr: image
+    io.containers.autoupdate/media-heimdall/media-prowlarr: image
+    io.containers.autoupdate/media-heimdall/media-radarr: image
+    io.containers.autoupdate/media-heimdall/media-readarr: image
+    io.containers.autoupdate/media-heimdall/media-sabnzbd: image
+    io.containers.autoupdate/media-heimdall/media-sonarr: image
+    io.containers.autoupdate/media-jellyfin/media-heimdall: image
     io.containers.autoupdate/media-jellyfin/media-jellyfin: image
+    io.containers.autoupdate/media-jellyfin/media-lidarr: image
     io.containers.autoupdate/media-jellyfin/media-prowlarr: image
     io.containers.autoupdate/media-jellyfin/media-radarr: image
+    io.containers.autoupdate/media-jellyfin/media-readarr: image
     io.containers.autoupdate/media-jellyfin/media-sabnzbd: image
     io.containers.autoupdate/media-jellyfin/media-sonarr: image
+    io.containers.autoupdate/media-lidarr/media-heimdall: image
+    io.containers.autoupdate/media-lidarr/media-jellyfin: image
+    io.containers.autoupdate/media-lidarr/media-lidarr: image
+    io.containers.autoupdate/media-lidarr/media-prowlarr: image
+    io.containers.autoupdate/media-lidarr/media-radarr: image
+    io.containers.autoupdate/media-lidarr/media-readarr: image
+    io.containers.autoupdate/media-lidarr/media-sabnzbd: image
+    io.containers.autoupdate/media-lidarr/media-sonarr: image
+    io.containers.autoupdate/media-prowlarr/media-heimdall: image
     io.containers.autoupdate/media-prowlarr/media-jellyfin: image
+    io.containers.autoupdate/media-prowlarr/media-lidarr: image
     io.containers.autoupdate/media-prowlarr/media-prowlarr: image
     io.containers.autoupdate/media-prowlarr/media-radarr: image
+    io.containers.autoupdate/media-prowlarr/media-readarr: image
     io.containers.autoupdate/media-prowlarr/media-sabnzbd: image
     io.containers.autoupdate/media-prowlarr/media-sonarr: image
+    io.containers.autoupdate/media-radarr/media-heimdall: image
     io.containers.autoupdate/media-radarr/media-jellyfin: image
+    io.containers.autoupdate/media-radarr/media-lidarr: image
     io.containers.autoupdate/media-radarr/media-prowlarr: image
     io.containers.autoupdate/media-radarr/media-radarr: image
+    io.containers.autoupdate/media-radarr/media-readarr: image
     io.containers.autoupdate/media-radarr/media-sabnzbd: image
     io.containers.autoupdate/media-radarr/media-sonarr: image
+    io.containers.autoupdate/media-readarr/media-heimdall: image
+    io.containers.autoupdate/media-readarr/media-jellyfin: image
+    io.containers.autoupdate/media-readarr/media-lidarr: image
+    io.containers.autoupdate/media-readarr/media-prowlarr: image
+    io.containers.autoupdate/media-readarr/media-radarr: image
+    io.containers.autoupdate/media-readarr/media-readarr: image
+    io.containers.autoupdate/media-readarr/media-sabnzbd: image
+    io.containers.autoupdate/media-readarr/media-sonarr: image
+    io.containers.autoupdate/media-sabnzbd/media-heimdall: image
     io.containers.autoupdate/media-sabnzbd/media-jellyfin: image
+    io.containers.autoupdate/media-sabnzbd/media-lidarr: image
     io.containers.autoupdate/media-sabnzbd/media-prowlarr: image
     io.containers.autoupdate/media-sabnzbd/media-radarr: image
+    io.containers.autoupdate/media-sabnzbd/media-readarr: image
     io.containers.autoupdate/media-sabnzbd/media-sabnzbd: image
     io.containers.autoupdate/media-sabnzbd/media-sonarr: image
+    io.containers.autoupdate/media-sonarr/media-heimdall: image
     io.containers.autoupdate/media-sonarr/media-jellyfin: image
+    io.containers.autoupdate/media-sonarr/media-lidarr: image
     io.containers.autoupdate/media-sonarr/media-prowlarr: image
     io.containers.autoupdate/media-sonarr/media-radarr: image
+    io.containers.autoupdate/media-sonarr/media-readarr: image
     io.containers.autoupdate/media-sonarr/media-sabnzbd: image
     io.containers.autoupdate/media-sonarr/media-sonarr: image
+    io.podman.annotations.kube.health.check/media-heimdall/media-heimdall: "true"
+    io.podman.annotations.kube.health.check/media-heimdall/media-jellyfin: "true"
+    io.podman.annotations.kube.health.check/media-heimdall/media-lidarr: "true"
+    io.podman.annotations.kube.health.check/media-heimdall/media-prowlarr: "true"
+    io.podman.annotations.kube.health.check/media-heimdall/media-radarr: "true"
+    io.podman.annotations.kube.health.check/media-heimdall/media-readarr: "true"
+    io.podman.annotations.kube.health.check/media-heimdall/media-sabnzbd: "true"
+    io.podman.annotations.kube.health.check/media-heimdall/media-sonarr: "true"
+    io.podman.annotations.kube.health.check/media-jellyfin/media-heimdall: "true"
     io.podman.annotations.kube.health.check/media-jellyfin/media-jellyfin: "true"
+    io.podman.annotations.kube.health.check/media-jellyfin/media-lidarr: "true"
     io.podman.annotations.kube.health.check/media-jellyfin/media-prowlarr: "true"
     io.podman.annotations.kube.health.check/media-jellyfin/media-radarr: "true"
+    io.podman.annotations.kube.health.check/media-jellyfin/media-readarr: "true"
     io.podman.annotations.kube.health.check/media-jellyfin/media-sabnzbd: "true"
     io.podman.annotations.kube.health.check/media-jellyfin/media-sonarr: "true"
+    io.podman.annotations.kube.health.check/media-lidarr/media-heimdall: "true"
+    io.podman.annotations.kube.health.check/media-lidarr/media-jellyfin: "true"
+    io.podman.annotations.kube.health.check/media-lidarr/media-lidarr: "true"
+    io.podman.annotations.kube.health.check/media-lidarr/media-prowlarr: "true"
+    io.podman.annotations.kube.health.check/media-lidarr/media-radarr: "true"
+    io.podman.annotations.kube.health.check/media-lidarr/media-readarr: "true"
+    io.podman.annotations.kube.health.check/media-lidarr/media-sabnzbd: "true"
+    io.podman.annotations.kube.health.check/media-lidarr/media-sonarr: "true"
+    io.podman.annotations.kube.health.check/media-prowlarr/media-heimdall: "true"
     io.podman.annotations.kube.health.check/media-prowlarr/media-jellyfin: "true"
+    io.podman.annotations.kube.health.check/media-prowlarr/media-lidarr: "true"
     io.podman.annotations.kube.health.check/media-prowlarr/media-prowlarr: "true"
     io.podman.annotations.kube.health.check/media-prowlarr/media-radarr: "true"
+    io.podman.annotations.kube.health.check/media-prowlarr/media-readarr: "true"
     io.podman.annotations.kube.health.check/media-prowlarr/media-sabnzbd: "true"
     io.podman.annotations.kube.health.check/media-prowlarr/media-sonarr: "true"
+    io.podman.annotations.kube.health.check/media-radarr/media-heimdall: "true"
     io.podman.annotations.kube.health.check/media-radarr/media-jellyfin: "true"
+    io.podman.annotations.kube.health.check/media-radarr/media-lidarr: "true"
     io.podman.annotations.kube.health.check/media-radarr/media-prowlarr: "true"
     io.podman.annotations.kube.health.check/media-radarr/media-radarr: "true"
+    io.podman.annotations.kube.health.check/media-radarr/media-readarr: "true"
     io.podman.annotations.kube.health.check/media-radarr/media-sabnzbd: "true"
     io.podman.annotations.kube.health.check/media-radarr/media-sonarr: "true"
+    io.podman.annotations.kube.health.check/media-readarr/media-heimdall: "true"
+    io.podman.annotations.kube.health.check/media-readarr/media-jellyfin: "true"
+    io.podman.annotations.kube.health.check/media-readarr/media-lidarr: "true"
+    io.podman.annotations.kube.health.check/media-readarr/media-prowlarr: "true"
+    io.podman.annotations.kube.health.check/media-readarr/media-radarr: "true"
+    io.podman.annotations.kube.health.check/media-readarr/media-readarr: "true"
+    io.podman.annotations.kube.health.check/media-readarr/media-sabnzbd: "true"
+    io.podman.annotations.kube.health.check/media-readarr/media-sonarr: "true"
+    io.podman.annotations.kube.health.check/media-sabnzbd/media-heimdall: "true"
     io.podman.annotations.kube.health.check/media-sabnzbd/media-jellyfin: "true"
+    io.podman.annotations.kube.health.check/media-sabnzbd/media-lidarr: "true"
     io.podman.annotations.kube.health.check/media-sabnzbd/media-prowlarr: "true"
     io.podman.annotations.kube.health.check/media-sabnzbd/media-radarr: "true"
+    io.podman.annotations.kube.health.check/media-sabnzbd/media-readarr: "true"
     io.podman.annotations.kube.health.check/media-sabnzbd/media-sabnzbd: "true"
     io.podman.annotations.kube.health.check/media-sabnzbd/media-sonarr: "true"
+    io.podman.annotations.kube.health.check/media-sonarr/media-heimdall: "true"
     io.podman.annotations.kube.health.check/media-sonarr/media-jellyfin: "true"
+    io.podman.annotations.kube.health.check/media-sonarr/media-lidarr: "true"
     io.podman.annotations.kube.health.check/media-sonarr/media-prowlarr: "true"
     io.podman.annotations.kube.health.check/media-sonarr/media-radarr: "true"
+    io.podman.annotations.kube.health.check/media-sonarr/media-readarr: "true"
     io.podman.annotations.kube.health.check/media-sonarr/media-sabnzbd: "true"
     io.podman.annotations.kube.health.check/media-sonarr/media-sonarr: "true"
-  creationTimestamp: "2024-07-30T16:17:00Z"
+  creationTimestamp: "2024-07-30T23:47:48Z"
   labels:
     app: media
   name: media
 spec:
   containers:
   - env:
-    - name: TZ
-      value: America/New_York
     - name: LANGUAGE
       value: en_US.UTF-8
+    - name: TZ
+      value: America/New_York
     - name: TERM
       value: xterm
-    - name: PGID
-      value: "1001"
     - name: PUID
+      value: "1001"
+    - name: PGID
       value: "1001"
     image: docker.io/jellyfin/jellyfin:latest
     name: media-jellyfin
@@ -84,8 +162,14 @@ spec:
       hostPort: 7878
     - containerPort: 8080
       hostPort: 8080
+    - containerPort: 80
+      hostPort: 8081
     - containerPort: 8096
       hostPort: 8096
+    - containerPort: 8686
+      hostPort: 8686
+    - containerPort: 8787
+      hostPort: 8787
     - containerPort: 8920
       hostPort: 8920
     - containerPort: 8989
@@ -94,47 +178,31 @@ spec:
       hostPort: 9696
     tty: true
     volumeMounts:
-    - mountPath: /sdcard
-      name: mnt-sd-host-0
+    - mountPath: /m2
+      name: mnt-m2-host-0
     - mountPath: /redbook
       name: mnt-redbook-host-1
-    - mountPath: /m2
-      name: mnt-m2-host-2
-    - mountPath: /cache
-      name: srv-containers-jellyfin-cache-host-3
-    - mountPath: /config
-      name: srv-containers-jellyfin-config-host-4
+    - mountPath: /sdcard
+      name: mnt-sd-host-2
     - mountPath: /dev/dri/renderD128
-      name: dev-dri-renderD128-host-5
+      name: dev-dri-renderD128-host-3
     - mountPath: /dev/dri/card0
-      name: dev-dri-card0-host-6
-  - env:
-    - name: PUID
-      value: "1001"
-    - name: TZ
-      value: America/New_York
-    - name: PGID
-      value: "1001"
-    - name: LANG
-      value: en_US.UTF-8
-    - name: LANGUAGE
-      value: en_US.UTF-8
-    image: docker.io/linuxserver/prowlarr:latest
-    name: media-prowlarr
-    volumeMounts:
+      name: dev-dri-card0-host-4
+    - mountPath: /cache
+      name: srv-containers-jellyfin-cache-host-5
     - mountPath: /config
-      name: srv-containers-prowlarr-config-host-0
+      name: srv-containers-jellyfin-config-host-6
   - env:
-    - name: PUID
-      value: "1001"
-    - name: LANGUAGE
-      value: en_US.UTF-8
-    - name: LANG
-      value: en_US.UTF-8
     - name: TZ
       value: America/New_York
     - name: PGID
       value: "1001"
+    - name: LANGUAGE
+      value: en_US.UTF-8
+    - name: PUID
+      value: "1001"
+    - name: LANG
+      value: en_US.UTF-8
     image: docker.io/linuxserver/sabnzbd:latest
     name: media-sabnzbd
     volumeMounts:
@@ -147,79 +215,131 @@ spec:
     - mountPath: /config
       name: srv-containers-sabnzbd-config-host-3
   - env:
-    - name: PUID
-      value: "1001"
-    - name: TZ
-      value: America/New_York
-    - name: LANG
-      value: en_US.UTF-8
-    - name: LANGUAGE
-      value: en_US.UTF-8
     - name: PGID
       value: "1001"
-    image: docker.io/linuxserver/sonarr:latest
-    name: media-sonarr
+    - name: LANGUAGE
+      value: en_US.UTF-8
+    - name: LANG
+      value: en_US.UTF-8
+    - name: TZ
+      value: America/New_York
+    - name: PUID
+      value: "1001"
+    image: docker.io/linuxserver/prowlarr:latest
+    name: media-prowlarr
     volumeMounts:
     - mountPath: /config
-      name: srv-containers-sonarr-config-host-0
+      name: srv-containers-prowlarr-config-host-0
+  - env:
+    - name: PUID
+      value: "1001"
+    - name: LANGUAGE
+      value: en_US.UTF-8
+    - name: TZ
+      value: America/New_York
+    - name: PGID
+      value: "1001"
+    - name: LANG
+      value: en_US.UTF-8
+    image: docker.io/linuxserver/lidarr:latest
+    name: media-lidarr
+    volumeMounts:
+    - mountPath: /config
+      name: srv-containers-lidarr-config-host-0
+    - mountPath: /music
+      name: mnt-sd-music-host-1
     - mountPath: /downloads
-      name: srv-containers-sabnzbd-downloads-host-1
-    - mountPath: /sdcard
-      name: mnt-sd-host-2
-    - mountPath: /redbook
-      name: mnt-redbook-host-3
-    - mountPath: /m2
-      name: mnt-m2-host-4
+      name: srv-containers-sabnzbd-downloads-host-2
   - env:
     - name: PGID
       value: "1001"
     - name: LANG
       value: en_US.UTF-8
-    - name: TZ
-      value: America/New_York
     - name: PUID
       value: "1001"
     - name: LANGUAGE
       value: en_US.UTF-8
+    - name: TZ
+      value: America/New_York
+    image: docker.io/linuxserver/sonarr:latest
+    name: media-sonarr
+    volumeMounts:
+    - mountPath: /m2
+      name: mnt-m2-host-0
+    - mountPath: /redbook
+      name: mnt-redbook-host-1
+    - mountPath: /sdcard
+      name: mnt-sd-host-2
+    - mountPath: /downloads
+      name: srv-containers-sabnzbd-downloads-host-3
+    - mountPath: /config
+      name: srv-containers-sonarr-config-host-4
+  - env:
+    - name: PUID
+      value: "1001"
+    - name: TZ
+      value: America/New_York
+    - name: PGID
+      value: "1001"
+    - name: LANGUAGE
+      value: en_US.UTF-8
+    - name: LANG
+      value: en_US.UTF-8
     image: docker.io/linuxserver/radarr:latest
     name: media-radarr
     volumeMounts:
-    - mountPath: /config
-      name: srv-containers-radarr-config-host-0
-    - mountPath: /downloads
-      name: srv-containers-sabnzbd-downloads-host-1
+    - mountPath: /m2
+      name: mnt-m2-host-0
+    - mountPath: /redbook
+      name: mnt-redbook-host-1
     - mountPath: /sdcard
       name: mnt-sd-host-2
-    - mountPath: /redbook
-      name: mnt-redbook-host-3
-    - mountPath: /m2
-      name: mnt-m2-host-4
+    - mountPath: /downloads
+      name: srv-containers-sabnzbd-downloads-host-3
+    - mountPath: /config
+      name: srv-containers-radarr-config-host-4
+  - env:
+    - name: PUID
+      value: "1001"
+    - name: TZ
+      value: America/New_York
+    - name: LANG
+      value: en_US.UTF-8
+    - name: PGID
+      value: "1001"
+    - name: LANGUAGE
+      value: en_US.UTF-8
+    image: docker.io/linuxserver/readarr:develop
+    name: media-readarr
+    volumeMounts:
+    - mountPath: /books
+      name: mnt-sd-books-host-0
+    - mountPath: /downloads
+      name: srv-containers-sabnzbd-downloads-host-1
+    - mountPath: /config
+      name: srv-containers-readarr-config-host-2
+  - env:
+    - name: PGID
+      value: "1001"
+    - name: LANGUAGE
+      value: en_US.UTF-8
+    - name: PUID
+      value: "1001"
+    - name: TZ
+      value: America/New_York
+    - name: LANG
+      value: en_US.UTF-8
+    image: lscr.io/linuxserver/heimdall:latest
+    name: media-heimdall
+    volumeMounts:
+    - mountPath: /config
+      name: srv-containers-heimdall-config-host-0
   restartPolicy: Always
   volumes:
-  - hostPath:
-      path: /srv/containers/jellyfin/cache
-      type: Directory
-    name: srv-containers-jellyfin-cache-host-3
-  - hostPath:
-      path: /srv/containers/prowlarr/config
-      type: Directory
-    name: srv-containers-prowlarr-config-host-0
   - hostPath:
       path: /srv/containers/sabnzbd/downloads
       type: Directory
     name: srv-containers-sabnzbd-downloads-host-0
-  - hostPath:
-      path: /mnt/sd
-      type: Directory
-    name: mnt-sd-host-0
-  - hostPath:
-      path: /dev/dri/renderD128
-      type: File
-    name: dev-dri-renderD128-host-5
-  - hostPath:
-      path: /dev/dri/card0
-      type: File
-    name: dev-dri-card0-host-6
   - hostPath:
       path: /srv/containers/sabnzbd/jobs
       type: Directory
@@ -229,42 +349,78 @@ spec:
       type: Directory
     name: srv-containers-sabnzbd-config-host-3
   - hostPath:
-      path: /srv/containers/sabnzbd/downloads
-      type: Directory
-    name: srv-containers-sabnzbd-downloads-host-1
-  - hostPath:
-      path: /mnt/m2
-      type: Directory
-    name: mnt-m2-host-4
-  - hostPath:
-      path: /srv/containers/radarr/config
-      type: Directory
-    name: srv-containers-radarr-config-host-0
-  - hostPath:
-      path: /mnt/m2
-      type: Directory
-    name: mnt-m2-host-2
-  - hostPath:
-      path: /srv/containers/jellyfin/config
-      type: Directory
-    name: srv-containers-jellyfin-config-host-4
-  - hostPath:
       path: /srv/containers/sabnzbd/incomplete-downloads
       type: Directory
     name: srv-containers-sabnzbd-incomplete-downloads-host-1
   - hostPath:
-      path: /srv/containers/sonarr/config
+      path: /srv/containers/prowlarr/config
       type: Directory
-    name: srv-containers-sonarr-config-host-0
+    name: srv-containers-prowlarr-config-host-0
+  - hostPath:
+      path: /srv/containers/sabnzbd/downloads
+      type: Directory
+    name: srv-containers-sabnzbd-downloads-host-2
+  - hostPath:
+      path: /srv/containers/sabnzbd/downloads
+      type: Directory
+    name: srv-containers-sabnzbd-downloads-host-3
+  - hostPath:
+      path: /srv/containers/radarr/config
+      type: Directory
+    name: srv-containers-radarr-config-host-4
+  - hostPath:
+      path: /mnt/sd/books
+      type: Directory
+    name: mnt-sd-books-host-0
+  - hostPath:
+      path: /srv/containers/sabnzbd/downloads
+      type: Directory
+    name: srv-containers-sabnzbd-downloads-host-1
   - hostPath:
       path: /mnt/sd
       type: Directory
     name: mnt-sd-host-2
   - hostPath:
-      path: /mnt/redbook
+      path: /dev/dri/renderD128
+      type: File
+    name: dev-dri-renderD128-host-3
+  - hostPath:
+      path: /dev/dri/card0
+      type: File
+    name: dev-dri-card0-host-4
+  - hostPath:
+      path: /srv/containers/lidarr/config
       type: Directory
-    name: mnt-redbook-host-3
+    name: srv-containers-lidarr-config-host-0
+  - hostPath:
+      path: /srv/containers/sonarr/config
+      type: Directory
+    name: srv-containers-sonarr-config-host-4
+  - hostPath:
+      path: /srv/containers/readarr/config
+      type: Directory
+    name: srv-containers-readarr-config-host-2
+  - hostPath:
+      path: /mnt/m2
+      type: Directory
+    name: mnt-m2-host-0
   - hostPath:
       path: /mnt/redbook
       type: Directory
     name: mnt-redbook-host-1
+  - hostPath:
+      path: /srv/containers/jellyfin/cache
+      type: Directory
+    name: srv-containers-jellyfin-cache-host-5
+  - hostPath:
+      path: /srv/containers/jellyfin/config
+      type: Directory
+    name: srv-containers-jellyfin-config-host-6
+  - hostPath:
+      path: /mnt/sd/music
+      type: Directory
+    name: mnt-sd-music-host-1
+  - hostPath:
+      path: /srv/containers/heimdall/config
+      type: Directory
+    name: srv-containers-heimdall-config-host-0
