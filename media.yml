@@ -230,7 +230,6 @@ spec:
     volumeMounts:
     - mountPath: /config
       name: heimdall-config
-  restartPolicy: Always
   volumes:
   - hostPath:
     - hostPath:
@@ -309,4 +308,3 @@ spec:
       path: /srv/containers/jellyfin/cache
       type: Directory
     name: jellyfin-cache
-
