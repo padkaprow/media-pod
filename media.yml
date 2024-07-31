@@ -18,7 +18,7 @@ metadata:
     io.podman.annotations.kube.health.check/media-readarr: 'true'
     io.podman.annotations.kube.health.check/media-sonarr: 'true'
     io.podman.annotations.kube.health.check/media-heimdall: 'true'
-  creationTimestamp: '2024-07-30T16:08:08Z'
+  creationTimestamp: '2024-07-31T14:18:55Z'
   labels:
     app: media
   name: media
@@ -50,6 +50,7 @@ spec:
       hostPort: 1900
     - containerPort: 7359
       hostPort: 7359
+    restart: unless-stopped
     tty: true
     volumeMounts:
     - mountPath: /m2
@@ -82,6 +83,7 @@ spec:
     ports:
     - containerPort: 8080
       hostPort: 8080
+    restart: unless-stopped
     volumeMounts:
     - mountPath: /downloads
       name: sabnzbd-downloads
@@ -107,6 +109,7 @@ spec:
     ports:
     - containerPort: 9696
       hostPort: 9696
+    restart: unless-stopped
     volumeMounts:
     - mountPath: /config
       name: prowlarr-config
@@ -150,6 +153,7 @@ spec:
     ports:
     - containerPort: 8989
       hostPort: 8989
+    restart: unless-stopped
     volumeMounts:
     - mountPath: /m2
       name: m2
@@ -177,6 +181,7 @@ spec:
     ports:
     - containerPort: 7878
       hostPort: 7878
+    restart: unless-stopped
     volumeMounts:
     - mountPath: /m2
       name: m2
@@ -204,6 +209,7 @@ spec:
     ports:
     - containerPort: 8787
       hostPort: 8787
+    restart: unless-stopped
     volumeMounts:
     - mountPath: /books
       name: samba-books
@@ -227,6 +233,7 @@ spec:
     ports:
     - containerPort: 80
       hostPort: 8081
+    restart: unless-stopped
     volumeMounts:
     - mountPath: /config
       name: heimdall-config
