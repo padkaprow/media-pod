@@ -9,6 +9,7 @@ metadata:
     io.containers.autoupdate/media-radarr: image
     io.containers.autoupdate/media-readarr: image
     io.containers.autoupdate/media-sonarr: image
+    io.containers.autoupdate/media-jellyseerr: image
     io.containers.autoupdate/media-heimdall: image
     io.podman.annotations.kube.health.check/media-jellyfin: 'true'
     io.podman.annotations.kube.health.check/media-sabnzbd: 'true'
@@ -17,6 +18,7 @@ metadata:
     io.podman.annotations.kube.health.check/media-radarr: 'true'
     io.podman.annotations.kube.health.check/media-readarr: 'true'
     io.podman.annotations.kube.health.check/media-sonarr: 'true'
+    io.podman.annotations.kube.health.check/media-jellsyeerr: 'true'
     io.podman.annotations.kube.health.check/media-heimdall: 'true'
   creationTimestamp: '2024-07-31T14:18:55Z'
   labels:

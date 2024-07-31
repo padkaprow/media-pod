@@ -1,0 +1,21 @@
+[Unit]
+Description=jellyseerr quadlet
+
+[Container]
+Image=docker.io/fallenbagel/jellyseerr:latest
+ContainerName=jellyseerr
+Pull=always
+Pod=media.pod
+
+Network=
+
+Volume=/srv/containers/jellyseerr/config:/config
+
+EnvironmentFile=jellyseerr.env
+
+[Service]
+Restart=always
+TimeoutStartSec=900
+
+[Install]
+WantedBy=multi-user.target default.target

@@ -1,0 +1,23 @@
+[Unit]
+Description=readarr quadlet
+
+[Container]
+Image=docker.io/linuxserver/readarr:develop
+ContainerName=readarr
+Pull=always
+Pod=media.pod
+
+Network=
+
+Volume=/srv/containers/sabnzbd/downloads:/downloads
+Volume=/mnt/sd/books:/books
+Volume=/srv/containers/readarr/config:/config
+
+EnvironmentFile=readarr.env
+
+[Service]
+Restart=always
+TimeoutStartSec=900
+
+[Install]
+WantedBy=multi-user.target default.target

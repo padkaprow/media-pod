@@ -9,10 +9,10 @@ Pod=media.pod
 
 Network=
 
-Volume=/srv/containers/sabnzbd/downloads:/downloads:Z
-Volume=/srv/containers/sabnzbd/incomplete-downloads:/incomplete-downloads:Z
-Volume=/srv/containers/sabnzbd/jobs:/jobs:Z
-Volume=/srv/containers/sabnzbd/config:/config:Z
+Volume=/srv/containers/sabnzbd/downloads:/downloads
+Volume=/srv/containers/sabnzbd/incomplete-downloads:/incomplete-downloads
+Volume=/srv/containers/sabnzbd/jobs:/jobs
+Volume=/srv/containers/sabnzbd/config:/config
 
 EnvironmentFile=sabnzbd.env
 

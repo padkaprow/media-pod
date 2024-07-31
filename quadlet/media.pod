@@ -1,5 +1,21 @@
 [Pod]
 PodName=media
+# jellyfin
+PublishPort=8096:8096
+PublishPort=8920:8920
+PublishPort=1900:1900
+PublishPort=7359:7359
+# sabnzbd
 PublishPort=8080:8080
+# prowlarr
+PublishPort=9696:9696
+# lidarr
+PublishPort=8686:8686
+# sonarr
 PublishPort=8989:8989
+# radarr
 PublishPort=7878:7878
+# jellyseerr
+PublishPort=5055:5055
+# heimdall
+PublishPort=8081:80

@@ -1,0 +1,23 @@
+[Unit]
+Description=lidarr quadlet
+
+[Container]
+Image=docker.io/linuxserver/lidarr:latest
+ContainerName=lidarr
+Pull=always
+Pod=media.pod
+
+Network=
+
+Volume=/srv/containers/sabnzbd/downloads:/downloads
+Volume=/mnt/sd/music:/music
+Volume=/srv/containers/lidarr/config:/config
+
+EnvironmentFile=lidarr.env
+
+[Service]
+Restart=always
+TimeoutStartSec=900
+
+[Install]
+WantedBy=multi-user.target default.target

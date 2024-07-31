@@ -1,0 +1,21 @@
+[Unit]
+Description=heimdall quadlet
+
+[Container]
+Image=lscr.io/linuxserver/heimdall:latest
+ContainerName=heimdall
+Pull=always
+Pod=media.pod
+
+Network=
+
+Volume=/srv/containers/heimdall/config:/config
+
+EnvironmentFile=heimdall.env
+
+[Service]
+Restart=always
+TimeoutStartSec=900
+
+[Install]
+WantedBy=multi-user.target default.target
