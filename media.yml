@@ -228,6 +228,26 @@ spec:
       value: en_US.UTF-8
     - name: LANGUAGE
       value: en_US.UTF-8
+    image: 'docker.io/fallenbagel/jellyseerr:latest'
+    name: jellyseerr
+    ports:
+    - containerPort: 5055
+      hostPort: 5055
+    restart: unless-stopped
+    volumeMounts:
+    - mountPath: /config
+      name: jellyseerr-config
+  - env:
+    - name: PUID
+      value: '1001'
+    - name: PGID
+      value: '1001'
+    - name: TZ
+      value: America/New_York
+    - name: LANG
+      value: en_US.UTF-8
+    - name: LANGUAGE
+      value: en_US.UTF-8
     image: 'lscr.io/linuxserver/heimdall:latest'
     name: heimdall
     ports:
@@ -294,6 +314,10 @@ spec:
       path: /srv/containers/sonarr/config
       type: Directory
     name: sonarr-config
+  - hostPath:
+      path: /srv/containers/jellyseerr/config
+      type: Directory
+    name: jellyseerr-config
   - hostPath:
       path: /srv/containers/heimdall/config
       type: Directory
