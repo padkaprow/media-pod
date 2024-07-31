@@ -3,6 +3,7 @@ Description=sonarr quadlet
 
 [Container]
 Image=docker.io/linuxserver/sonarr:latest
+AutoUpdate=registry
 ContainerName=sonarr
 Pull=always
 Pod=media.pod

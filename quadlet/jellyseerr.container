@@ -3,6 +3,7 @@ Description=jellyseerr quadlet
 
 [Container]
 Image=docker.io/fallenbagel/jellyseerr:latest
+AutoUpdate=registry
 ContainerName=jellyseerr
 Pull=always
 Pod=media.pod

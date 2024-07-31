@@ -3,6 +3,7 @@ Description=readarr quadlet
 
 [Container]
 Image=docker.io/linuxserver/readarr:develop
+AutoUpdate=registry
 ContainerName=readarr
 Pull=always
 Pod=media.pod

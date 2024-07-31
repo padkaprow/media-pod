@@ -3,6 +3,7 @@ Description=heimdall quadlet
 
 [Container]
 Image=lscr.io/linuxserver/heimdall:latest
+AutoUpdate=registry
 ContainerName=heimdall
 Pull=always
 Pod=media.pod

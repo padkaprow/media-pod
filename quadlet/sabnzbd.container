@@ -3,6 +3,7 @@ Description=sabnzbd quadlet
 
 [Container]
 Image=docker.io/linuxserver/sabnzbd:latest
+AutoUpdate=registry
 ContainerName=sabnzbd
 Pull=always
 Pod=media.pod

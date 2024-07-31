@@ -3,6 +3,7 @@ Description=radarr quadlet
 
 [Container]
 Image=docker.io/linuxserver/radarr:latest
+AutoUpdate=registry
 ContainerName=radarr
 Pull=always
 Pod=media.pod

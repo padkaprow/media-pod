@@ -3,6 +3,7 @@ Description=lidarr quadlet
 
 [Container]
 Image=docker.io/linuxserver/lidarr:latest
+AutoUpdate=registry
 ContainerName=lidarr
 Pull=always
 Pod=media.pod

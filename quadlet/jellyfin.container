@@ -3,6 +3,7 @@ Description=jellyfin quadlet
 
 [Container]
 Image=docker.io/jellyfin/jellyfin:latest
+AutoUpdate=registry
 ContainerName=jellyfin
 Pull=always
 Pod=media.pod

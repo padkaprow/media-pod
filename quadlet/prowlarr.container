@@ -3,6 +3,7 @@ Description=prowlarr quadlet
 
 [Container]
 Image=docker.io/linuxserver/prowlarr:latest
+AutoUpdate=registry
 ContainerName=prowlarr
 Pull=always
 Pod=media.pod
