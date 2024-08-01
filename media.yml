@@ -329,7 +329,7 @@ spec:
       type: Directory
     name: render-device
   - hostPath:
-      path: /dev/dri/card1
+      path: /dev/dri/card0
       type: Directory
     name: render-card
   - hostPath:
