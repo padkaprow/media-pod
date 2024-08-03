@@ -1,0 +1,41 @@
+---media.service---
+[Install]
+WantedBy=default.target
+
+[X-Kube]
+#Indicates whether containers will be auto-updated
+AutoUpdate=registry
+# Point to the yaml file in the same directory
+Yaml=media.yml
+# jellyfin
+PublishPort=8096:8096
+PublishPort=8920:8920
+PublishPort=1900:1900
+PublishPort=7359:7359
+# sabnzbd
+PublishPort=8080:8080
+# prowlarr
+PublishPort=9696:9696
+# lidarr
+PublishPort=8686:8686
+# sonarr
+PublishPort=8989:8989
+# radarr
+PublishPort=7878:7878
+# jellyseerr
+PublishPort=5055:5055
+# heimdall
+PublishPort=8081:80
+
+[Unit]
+SourcePath=/home/steve/.config/containers/systemd/media.kube
+RequiresMountsFor=%t/containers
+
+[Service]
+KillMode=mixed
+Environment=PODMAN_SYSTEMD_UNIT=%n
+Type=notify
+NotifyAccess=all
+SyslogIdentifier=%N
+ExecStart=/usr/bin/podman kube play --replace --service-container=true --annotation=io.containers.autoupdate=registry --publish 8096:8096 --publish 8920:8920 --publish 1900:1900 --publish 7359:7359 --publish 8080:8080 --publish 9696:9696 --publish 8686:8686 --publish 8989:8989 --publish 7878:7878 --publish 5055:5055 --publish 8081:80 /home/steve/.config/containers/systemd/media.yml
+ExecStopPost=/usr/bin/podman kube down /home/steve/.config/containers/systemd/media.yml
