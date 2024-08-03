@@ -237,7 +237,7 @@ spec:
       hostPort: 5055
     restart: always
     volumeMounts:
-    - mountPath: /config
+    - mountPath: /app/config
       name: jellyseerr-config
   - env:
     - name: PUID
