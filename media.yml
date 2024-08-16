@@ -61,6 +61,8 @@ spec:
       name: redbook
     - mountPath: /sdcard
       name: sdcard
+    - mountPath: /union
+      name: union
     - mountPath: /dev/dri/renderD128
       name: render-device
     - mountPath: /dev/dri/card0
@@ -163,6 +165,8 @@ spec:
       name: redbook
     - mountPath: /sdcard
       name: sdcard
+    - mountPath: /union
+      name: union
     - mountPath: /downloads
       name: sabnzbd-downloads
     - mountPath: /config
@@ -191,6 +195,8 @@ spec:
       name: redbook
     - mountPath: /sdcard
       name: sdcard
+    - mountPath: /union
+      name: union
     - mountPath: /downloads
       name: sabnzbd-downloads
     - mountPath: /config
@@ -280,6 +286,10 @@ spec:
       path: /mnt/sd/books
       type: Directory
     name: samba-books
+  - hostPath:
+      path: /mnt/union
+      type: Directory
+    name: union
   - hostPath:
       path: /srv/containers/sabnzbd/config
       type: Directory
