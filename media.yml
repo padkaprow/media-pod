@@ -337,6 +337,6 @@ spec:
       type: Directory
     name: jellyfin-config
   - hostPath:
-      path: /srv/containers/jellyfin/cache
+      path: /mnt/m2/jellyfin/cache
       type: Directory
     name: jellyfin-cache
