@@ -55,10 +55,6 @@ spec:
     restart: always
     tty: true
     volumeMounts:
-    - mountPath: /m2
-      name: m2
-    - mountPath: /redbook
-      name: redbook
     - mountPath: /union
       name: union
     - mountPath: /dev/dri/renderD128
@@ -157,8 +153,6 @@ spec:
       hostPort: 8989
     restart: always
     volumeMounts:
-    - mountPath: /redbook
-      name: redbook
     - mountPath: /union
       name: union
     - mountPath: /downloads
@@ -183,8 +177,6 @@ spec:
       hostPort: 7878
     restart: always
     volumeMounts:
-    - mountPath: /redbook
-      name: redbook
     - mountPath: /union
       name: union
     - mountPath: /downloads
@@ -256,18 +248,6 @@ spec:
     - mountPath: /config
       name: heimdall-config
   volumes:
-  - hostPath:
-      path: /mnt/m2
-      type: Directory
-    name: m2
-  - hostPath:
-      path: /mnt/redbook
-      type: Directory
-    name: redbook
-  - hostPath:
-      path: /mnt/sd
-      type: Directory
-    name: sdcard
   - hostPath:
       path: /mnt/sd/music
       type: Directory
