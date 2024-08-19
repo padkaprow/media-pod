@@ -249,11 +249,11 @@ spec:
       name: heimdall-config
   volumes:
   - hostPath:
-      path: /mnt/sd/music
+      path: /mnt/m2/music
       type: Directory
     name: samba-music
   - hostPath:
-      path: /mnt/sd/books
+      path: /mnt/m2/books
       type: Directory
     name: samba-books
   - hostPath:
@@ -269,11 +269,11 @@ spec:
       type: Directory
     name: sabnzbd-jobs
   - hostPath:
-      path: /srv/containers/sabnzbd/incomplete-downloads
+      path: /mnt/m2/containers/sabnzbd/incomplete-downloads
       type: Directory
     name: sabnzbd-incomplete
   - hostPath:
-      path: /srv/containers/sabnzbd/downloads
+      path: /mnt/m2/containers/sabnzbd/downloads
       type: Directory
     name: sabnzbd-downloads
   - hostPath:
