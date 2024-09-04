@@ -1,0 +1,40 @@
+# Save the output of this file and use kubectl create -f to import
+# it into Kubernetes.
+#
+# Created with podman-5.2.1
+
+# NOTE: If you generated this yaml from an unprivileged and rootless podman container on an SELinux
+# enabled system, check the podman generate kube man page for steps to follow to ensure that your pod/container
+# has the right permissions to access the volumes added.
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: "2024-08-23T21:39:19Z"
+  labels:
+    app: jellyfin-pod
+  name: jellyfin-pod
+spec:
+  containers:
+  - image: docker.io/jellyfin/jellyfin:latest
+    name: jellyfin
+    ports:
+    - containerPort: 8096
+      hostPort: 8096
+    volumeMounts:
+    - mountPath: /cache
+      name: jellyfin-cache-pvc
+    - mountPath: /media
+      name: media-pvc
+    - mountPath: /config
+      name: jellyfin-config-pvc
+  volumes:
+  - name: jellyfin-cache-pvc
+    persistentVolumeClaim:
+      claimName: jellyfin-cache
+  - name: media-pvc
+    persistentVolumeClaim:
+      claimName: media
+  - name: jellyfin-config-pvc
+    persistentVolumeClaim:
+      claimName: jellyfin-config
