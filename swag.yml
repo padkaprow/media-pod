@@ -43,10 +43,10 @@ spec:
       name: swag-config
     cap_add:
       - NET_ADMIN
+    restart: unless-stopped
   volumes:
   - hostPath:
       path: /srv/containers/swag/config
       type: DirectoryOrCreate
     name: swag-config
 
-    restart: unless-stopped
