@@ -13,6 +13,8 @@ services:
       - URL=superflea.duckdns.org
       - SUBDOMAINS=wildcard
       - VALIDATION=duckdns
+      - DUCKDNSTOKEN=${DUCKDNS_TOKEN}
+      - EMAIL=stephen.ancliffe@gmail.com
     volumes:
       - /srv/containers/swag/config:/config
     ports:
