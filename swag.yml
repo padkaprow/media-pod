@@ -1,23 +1,52 @@
 ---
-version: "2.1"
-services:
-  swag:
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: "2024-09-06T22:10:29Z"
+  labels:
+    app: swag
+  name: swag
+spec:
+  containers:
+  - env:
+    - name: TERM
+      value: xterm
+    - name: PUID
+      value: "1001"
+    - name: PGID
+      value: "1001"
+    - name: TZ
+      value: America/New_York
+    - name: LANG
+      value: en_US.UTF-8
+    - name: LANGUAGE
+      value: en_US.UTF-8-8
+    - name: URL
+      value: superflea.duckdns.org
+    - name: SUBDOMAINS
+      value: wildcard
+    - name: VALIDATION
+      value: duckdns
+    - name: EMAIL
+      value: stephen.ancliffe@gmail.com
+    - name: DUCKDNSTOKEN
+      value: ${DUCKDNS_TOKEN}
     image: lscr.io/linuxserver/swag
-    container_name: swag
+    name: swag
+    ports:
+    - containerPort: 80
+      hostPort: 80
+    - containerPort: 443
+      hostPort: 443
+    volumeMounts:
+    - mountPath: /config
+      name: swag-config
     cap_add:
       - NET_ADMIN
-    environment:
-      - PUID=1001
-      - PGID=1001
-      - TZ=America/New_York
-      - URL=superflea.duckdns.org
-      - SUBDOMAINS=wildcard
-      - VALIDATION=duckdns
-      - DUCKDNSTOKEN=${DUCKDNS_TOKEN}
-      - EMAIL=stephen.ancliffe@gmail.com
-    volumes:
-      - /srv/containers/swag/config:/config
-    ports:
-      - 443:443
-      - 80:80
+  volumes:
+  - hostPath:
+      path: /srv/containers/swag/config:/config
+      type: DirectoryOrCreate
+    name: swag-config
+
     restart: unless-stopped
