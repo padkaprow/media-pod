@@ -1,27 +1,21 @@
 ---
+version: "2.1"
 services:
   swag:
-    image: lscr.io/linuxserver/swag:latest
+    image: lscr.io/linuxserver/swag
     container_name: swag
     cap_add:
       - NET_ADMIN
     environment:
-      - PUID=1000
-      - PGID=1000
+      - PUID=1001
+      - PGID=1001
       - TZ=America/New_York
       - URL=superflea.duckdns.org
-      - VALIDATION=http
-      - SUBDOMAINS= #optional
-      - CERTPROVIDER= #optional
-      - DNSPLUGIN=cloudflare #optional
-      - PROPAGATION= #optional
-      - EMAIL= #optional
-      - ONLY_SUBDOMAINS=false #optional
-      - EXTRA_DOMAINS= #optional
-      - STAGING=false #optional
+      - SUBDOMAINS=wildcard
+      - VALIDATION=duckdns
     volumes:
       - /srv/containers/swag/config:/config
     ports:
       - 443:443
-      - 80:80 #optional
+      - 80:80
     restart: unless-stopped
