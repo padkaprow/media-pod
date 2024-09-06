@@ -45,7 +45,7 @@ spec:
       - NET_ADMIN
   volumes:
   - hostPath:
-      path: /srv/containers/swag/config:/config
+      path: /srv/containers/swag/config
       type: DirectoryOrCreate
     name: swag-config
 
