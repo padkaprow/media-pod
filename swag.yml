@@ -1,37 +1,37 @@
----
 apiVersion: v1
 kind: Pod
 metadata:
-  creationTimestamp: "2024-09-06T22:10:29Z"
+  creationTimestamp: "2024-09-07T13:45:56Z"
   labels:
     app: swag
   name: swag
 spec:
   containers:
   - env:
-    - name: TERM
-      value: xterm
+    - name: SUBDOMAINS
+      value: wildcard
+    - name: DUCKDNSTOKEN
+      valueFrom:
+        secretKeyRef:
+          name: my-kube-password
+          key: password
+    - name: URL
+      value: superflea.duckdns.org
     - name: PUID
       value: "1001"
+    - name: EMAIL
+      value: stephen.ancliffe@gmail.com
+    - name: LANGUAGE
+      value: en_US.UTF-8-8
+    - name: LANG
+      value: en_US.UTF-8
+    - name: VALIDATION
+      value: duckdns
     - name: PGID
       value: "1001"
     - name: TZ
       value: America/New_York
-    - name: LANG
-      value: en_US.UTF-8
-    - name: LANGUAGE
-      value: en_US.UTF-8-8
-    - name: URL
-      value: superflea.duckdns.org
-    - name: SUBDOMAINS
-      value: wildcard
-    - name: VALIDATION
-      value: duckdns
-    - name: EMAIL
-      value: stephen.ancliffe@gmail.com
-    - name: DUCKDNSTOKEN
-      value: ${DUCKDNS_TOKEN}
-    image: lscr.io/linuxserver/swag
+    image: lscr.io/linuxserver/swag:latest
     name: swag
     ports:
     - containerPort: 80
@@ -41,12 +41,10 @@ spec:
     volumeMounts:
     - mountPath: /config
       name: swag-config
-    cap_add:
-      - NET_ADMIN
-    restart: unless-stopped
+  restartPolicy: Always
   volumes:
   - hostPath:
       path: /srv/containers/swag/config
-      type: DirectoryOrCreate
+      type: Directory
     name: swag-config
 

@@ -5,6 +5,7 @@
 
 # Podman and Docker related files
 *.env
+secret.yml
 
 # User-specific files
 *.rsuser
