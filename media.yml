@@ -20,7 +20,7 @@ metadata:
     io.podman.annotations.kube.health.check/media-sonarr: 'true'
     io.podman.annotations.kube.health.check/media-jellsyeerr: 'true'
     io.podman.annotations.kube.health.check/media-heimdall: 'true'
-  creationTimestamp: '2024-08-01T18:46:53Z'
+  creationTimestamp: '2024-10-01T02:02:33Z'
   labels:
     app: media
   name: media
@@ -54,6 +54,12 @@ spec:
       hostPort: 7359
     restart: always
     tty: true
+    healthcheck:
+      test: curl -i http://192.168.2.183:8096/health || exit 1
+      interval: 40s
+      timeout: 30s
+      retries: 3
+      start_period: 60s
     volumeMounts:
     - mountPath: /union
       name: union

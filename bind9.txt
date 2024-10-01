@@ -1,0 +1,1 @@
+podman run -d --name bind9-container -e TZ=America/New_York -e BIND9_USER=bind -p 30053:53 -p 30053:53/udp -v /srv/containers/bind9/var/cache/bind/:/var/cache/bind -v /srv/containers/bind9/var/lib/bind:/var/lib/bind -v /srv/containers/bind9/etc/bind/named.conf:/etc/bind/named.conf ubuntu/bind9:latest
