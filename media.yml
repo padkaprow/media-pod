@@ -289,8 +289,8 @@ spec:
     image: 'docker.io/b4bz/homer:latest'
     name: homer
     ports:
-    - containerPort: 8080
-      hostPort: 8585
+    - containerPort: 8585
+      hostPort: 8080
     restart: always
     healthcheck:
       test: curl --fail http://localhost || exit 1
