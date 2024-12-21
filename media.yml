@@ -299,7 +299,7 @@ spec:
       retries: 3
       start_period: 60s    
     volumeMounts:
-    - mountPath: /wwww/assets
+    - mountPath: /www/assets
       name: homer-config
   volumes:
   - hostPath:
