@@ -93,7 +93,7 @@ spec:
       interval: 40s
       timeout: 30s
       retries: 3
-      start_period: 60s    
+      start_period: 60s
     volumeMounts:
     - mountPath: /downloads
       name: sabnzbd-downloads
@@ -151,7 +151,7 @@ spec:
       interval: 40s
       timeout: 30s
       retries: 3
-      start_period: 60s    
+      start_period: 60
     volumeMounts:
     - mountPath: /config
       name: lidarr-config
@@ -289,15 +289,15 @@ spec:
     image: 'docker.io/b4bz/homer:latest'
     name: homer
     ports:
-    - containerPort: 8585
-      hostPort: 8080
+    - containerPort: 8080
+      hostPort: 8585
     restart: always
     healthcheck:
       test: curl --fail http://localhost || exit 1
       interval: 40s
       timeout: 30s
       retries: 3
-      start_period: 60s    
+      start_period: 60s
     volumeMounts:
     - mountPath: /www/assets
       name: homer-config
