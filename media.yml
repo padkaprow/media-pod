@@ -85,8 +85,8 @@ spec:
     image: 'docker.io/linuxserver/sabnzbd:latest'
     name: sabnzbd
     ports:
-    - containerPort: 8080
-      hostPort: 8080
+    - containerPort: 8181
+      hostPort: 8181
     restart: always
     healthcheck:
       test: curl --fail http://localhost:8080 || exit 1
