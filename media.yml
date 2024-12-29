@@ -61,8 +61,8 @@ spec:
       retries: 3
       start_period: 60s
     volumeMounts:
-    - mountPath: /union
-      name: union
+    - mountPath: /redbook
+      name: redbook
     - mountPath: /dev/dri/renderD128
       name: render-device
     - mountPath: /dev/dri/card0
@@ -183,8 +183,8 @@ spec:
       retries: 3
       start_period: 60s
     volumeMounts:
-    - mountPath: /union
-      name: union
+    - mountPath: /redbook
+      name: redbook
     - mountPath: /downloads
       name: sabnzbd-downloads
     - mountPath: /config
@@ -213,8 +213,8 @@ spec:
       retries: 3
       start_period: 60s
     volumeMounts:
-    - mountPath: /union
-      name: union
+    - mountPath: /redbook
+      name: redbook
     - mountPath: /downloads
       name: sabnzbd-downloads
     - mountPath: /config
@@ -311,9 +311,9 @@ spec:
       type: Directory
     name: samba-books
   - hostPath:
-      path: /mnt/union/media
+      path: /mnt/redbook/media
       type: Directory
-    name: union
+    name: redbook
   - hostPath:
       path: /srv/containers/sabnzbd/config
       type: Directory
