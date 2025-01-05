@@ -20,7 +20,7 @@ metadata:
     io.podman.annotations.kube.health.check/media-sonarr: 'true'
     io.podman.annotations.kube.health.check/media-jellsyeerr: 'true'
     io.podman.annotations.kube.health.check/media-homer: 'true'
-  creationTimestamp: '2024-12-21T21:46:03Z'
+  creationTimestamp: '2025-01-05T00:38:59Z'
   labels:
     app: media
   name: media
@@ -61,8 +61,8 @@ spec:
       retries: 3
       start_period: 60s
     volumeMounts:
-    - mountPath: /redbook
-      name: redbook
+    - mountPath: /terra
+      name: terra
     - mountPath: /dev/dri/renderD128
       name: render-device
     - mountPath: /dev/dri/card0
@@ -183,8 +183,8 @@ spec:
       retries: 3
       start_period: 60s
     volumeMounts:
-    - mountPath: /redbook
-      name: redbook
+    - mountPath: /terra
+      name: terra
     - mountPath: /downloads
       name: sabnzbd-downloads
     - mountPath: /config
@@ -213,8 +213,8 @@ spec:
       retries: 3
       start_period: 60s
     volumeMounts:
-    - mountPath: /redbook
-      name: redbook
+    - mountPath: /terra
+      name: terra
     - mountPath: /downloads
       name: sabnzbd-downloads
     - mountPath: /config
@@ -311,9 +311,9 @@ spec:
       type: Directory
     name: samba-books
   - hostPath:
-      path: /mnt/redbook/media
+      path: /mnt/terra/media
       type: Directory
-    name: redbook
+    name: terra
   - hostPath:
       path: /srv/containers/sabnzbd/config
       type: Directory
