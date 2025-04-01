@@ -10,9 +10,9 @@ Pod=media.pod
 
 Network=
 
-Volume=/srv/containers/sabnzbd/downloads:/downloads
-Volume=/mnt/sd/books:/books
 Volume=/srv/containers/readarr/config:/config
+Volume=/srv/containers/sabnzbd/downloads:/downloads
+Volume=/srv/media/ebooks:/media
 
 EnvironmentFile=readarr.env
 

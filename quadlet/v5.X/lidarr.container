@@ -10,9 +10,9 @@ Pod=media.pod
 
 Network=
 
-Volume=/srv/containers/sabnzbd/downloads:/downloads
-Volume=/mnt/sd/music:/music
 Volume=/srv/containers/lidarr/config:/config
+Volume=/srv/containers/sabnzbd/downloads:/downloads
+Volume=/srv/media/music:/media
 
 EnvironmentFile=lidarr.env
 

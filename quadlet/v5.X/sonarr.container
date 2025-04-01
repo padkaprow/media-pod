@@ -10,11 +10,9 @@ Pod=media.pod
 
 Network=
 
-Volume=/srv/containers/sabnzbd/downloads:/downloads
-Volume=/mnt/m2:/m2
-Volume=/mnt/sd:/sdcard
-Volume=/mnt/redbook:/redbook
 Volume=/srv/containers/sonarr/config:/config
+Volume=/srv/containers/sabnzbd/downloads:/downloads
+Volume=/srv/media/tv:/media
 
 EnvironmentFile=sonarr.env
 

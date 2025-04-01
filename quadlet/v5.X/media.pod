@@ -1,5 +1,6 @@
 [Pod]
 PodName=media
+ServiceName=media
 # jellyfin
 PublishPort=8096:8096
 PublishPort=8920:8920

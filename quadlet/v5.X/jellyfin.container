@@ -10,13 +10,9 @@ Pod=media.pod
 
 Network=
 
-Volume=/mnt/m2:/m2
-Volume=/mnt/sd:/sdcard
-Volume=/mnt/redbook:/redbook
-Volume=/dev/dri/renderD128:/dev/dri/renderD128
-Volume=/dev/dri/card0:/dev/dri/card0
-Volume=/srv/containers/jellyfin/cache:/cache
 Volume=/srv/containers/jellyfin/config:/config
+Volume=/srv/containers/jellyfin/cache:/cache
+Volume=/srv/media:/media
 
 EnvironmentFile=jellyfin.env
 
