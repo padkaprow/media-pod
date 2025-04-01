@@ -10,9 +10,11 @@ Pod=media.pod
 
 Network=
 
-Volume=/srv/containers/jellyfin/config:/config
-Volume=/srv/containers/jellyfin/cache:/cache
-Volume=/srv/media:/media
+Volume=/srv/containers/jellyfin/config:/config:Z
+Volume=/srv/containers/jellyfin/cache:/cache:Z
+Volume=/srv/media/tv:/tv:Z
+Volume=/srv/media/movies:/movies:Z
+Volume=/srv/media/music:/music:Z
 
 EnvironmentFile=jellyfin.env
 
