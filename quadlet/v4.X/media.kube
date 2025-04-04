@@ -23,5 +23,5 @@ PublishPort=8989:8989
 PublishPort=7878:7878
 # jellyseerr
 PublishPort=5055:5055
-# heimdall
+# homer
 PublishPort=8081:80
