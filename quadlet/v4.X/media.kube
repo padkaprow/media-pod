@@ -24,4 +24,4 @@ PublishPort=7878:7878
 # jellyseerr
 PublishPort=5055:5055
 # homer
-PublishPort=8081:80
+PublishPort=8585:8080
