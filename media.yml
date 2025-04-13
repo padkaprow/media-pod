@@ -20,7 +20,7 @@ metadata:
     io.podman.annotations.kube.health.check/media-sonarr: 'true'
     io.podman.annotations.kube.health.check/media-jellsyeerr: 'true'
     io.podman.annotations.kube.health.check/media-homer: 'true'
-  creationTimestamp: '2025-01-05T00:38:59Z'
+  creationTimestamp: '2025-04-13T00:38:59Z'
   labels:
     app: media
   name: media
@@ -156,7 +156,7 @@ spec:
     - mountPath: /config
       name: lidarr-config
     - mountPath: /music
-      name: samba-music
+      name: terra-music
     - mountPath: /downloads
       name: sabnzbd-downloads
   - env:
@@ -244,7 +244,7 @@ spec:
       start_period: 60s
     volumeMounts:
     - mountPath: /books
-      name: samba-books
+      name: terra-books
     - mountPath: /downloads
       name: sabnzbd-downloads
     - mountPath: /config
@@ -303,13 +303,13 @@ spec:
       name: homer-config
   volumes:
   - hostPath:
-      path: /mnt/m2/music
+      path: /mnt/terra/media/music
       type: Directory
-    name: samba-music
+    name: terra-music
   - hostPath:
-      path: /mnt/m2/books
+      path: /mnt/terra/media/ebooks
       type: Directory
-    name: samba-books
+    name: terra-books
   - hostPath:
       path: /mnt/terra/media
       type: Directory
@@ -323,11 +323,11 @@ spec:
       type: Directory
     name: sabnzbd-jobs
   - hostPath:
-      path: /mnt/m2/containers/sabnzbd/incomplete-downloads
+      path: /mnt/containers/sabnzbd/incomplete-downloads
       type: Directory
     name: sabnzbd-incomplete
   - hostPath:
-      path: /mnt/m2/containers/sabnzbd/downloads
+      path: /mnt/containers/sabnzbd/downloads
       type: Directory
     name: sabnzbd-downloads
   - hostPath:
@@ -371,6 +371,6 @@ spec:
       type: Directory
     name: jellyfin-config
   - hostPath:
-      path: /mnt/m2/jellyfin/cache
+      path: /mnt/jellyfin/cache/
       type: Directory
     name: jellyfin-cache
